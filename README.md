@@ -1,6 +1,6 @@
 # Live3DGSAvatar
 
-本分支记录了只用正脸训练后补全侧脸的实验，含十条论文路线的尝试、逐帧结果和复跑步骤。[实验报告](experiments/profile/RESULTS.md)
+本分支比较只用正脸训练后怎样补全侧脸。实验包含十条论文路线的尝试，最新复测覆盖三个训练种子以及最大约 63° 的真实转头。[最新复测](experiments/profile/SECOND_ROUND.md) · [十条路线初筛](experiments/profile/RESULTS.md)
 
 面向视频通话的 3DGS 头部重建：从单目视频 / RDF 跟踪结果训练可驱动高斯头像，
 支持留出集评测、大角度头转指标、可选加密、浏览器预览和实时驱动。

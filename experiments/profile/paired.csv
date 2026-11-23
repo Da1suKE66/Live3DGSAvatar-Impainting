@@ -20,3 +20,10 @@ matched-real,full-native,49,0.3546892,29,0.0018637,21
 matched-elite,full-native,49,0.2587037,25,0.0033352,19
 matched-edgar,full-native,49,0.6653644,42,0.0032051,17
 matched-blend,full-native,49,0.1149756,23,0.0027237,23
+matched-difix,full-native,49,0.6686661,35,0.0028652,11
+matched-native-s1702,matched-native-s1702,49,0.0,0,0.0,0
+matched-edgar-s1702,matched-native-s1702,49,-0.0314828,13,0.0018058,22
+matched-real-s1702,matched-native-s1702,49,-0.2879395,8,0.0046142,22
+matched-native-s1703,matched-native-s1703,49,0.0,0,0.0,0
+matched-edgar-s1703,matched-native-s1703,49,0.4844973,39,-0.0104977,49
+matched-real-s1703,matched-native-s1703,49,0.3679203,42,-0.0008665,32

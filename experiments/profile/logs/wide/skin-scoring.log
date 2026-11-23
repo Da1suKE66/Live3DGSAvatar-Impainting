@@ -1,0 +1,69 @@
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+full-native adbfeef665c39022657e78d81a397b79352e8d6574a82e0576cc5875d7eed211 55
+matched-edgar 3868d0a839840cab6714e9438750d15f9364cd3ca0c2235357aebca16911b86c 55
+matched-difix eb2804d23102c50ef3f0afd05879486a2f4c8e829802b7ecec0a7b9e4309f827 55
+matched-elite 5921d51bfcb0d884b37252f2145be72b062d772bd0c6fd1c4cfc6ab1d5bf46e5 55
+matched-blend 2403540515b909041e4a0902609e8b65f67c3558a098361d65ee52c595900ec0 55
+matched-real 80b835f7211f2cde75755ced63e41e34bbefa2cfeb71ac9c0e84cbdc3d9b05d0 55
+base 68d2ff9e0f6396a05614b299a6ed9b95e3663da36cd1e15eed7de941370cb691 55
+real 5bb974773d8c39ebca82d1f67d6092fa5d4a7d3bf3148b62cc338d293073572e 55
+raw 7af7f0cd178cc3333df6041994f41324670733f56297c8cbfc6b40a2863b890f 55
+native-syncfix 6902261b497085ddd5f9175abfdb00f1c722ce68ab7b7cd644e055e811b05380 55
+syncfix 4ce1e884f3209550b3db22c353740514ef633f12adf3186979f85b36d659011e 55
+difix 17d4c37ab686fc4a58acbeab8083adeb6bfce5fc750114ad3e47e57e1188e438 55
+edgar 0006be2921241c9e9cb08d830c4feba89416ae9999caa105e9da63b107b786b1 55
+elite 94ba2aeb8e6ba24418f778c63f8cfdd5dd9b956327614dee4ea660994b799501 55
+eg3d 175591ffbb15798f23f1bb98fd54a1eb087b7bd0fd23d39b03765b4e0cfb4db5 55
+fate-prior e6624df32aba5caab4bc3b6351a262de437b136044e5396178fa35b8ea204581 55
+morphable 7ba38e7e36b69696e6573a33e8ac13aac94ea83b1cccf61bf7ddc2ef1b4f9f8b 55
+full-base c47cc75ec8c5af23636ef9185ead62e692c3a48ecd2e4658a47f644170210d95 55
+full-real 7c5986c87958f47a238129baad632fa5d6e922fcae20eef4179d93536aa1f575 55
+full-elite bea7d0752451005beeb823262ba166efa146ce54db28006d299dc5a726c59b33 55
+full-edgar 607890cc46280dd8dd25aba0edcbc50e7aa59e8131fd7da30157477d51be09e5 55
+full-blend 6c363a72e75ae5df3fffdd472ddf716e83d96f8d142a0e44745a044dd84f2915 55
+matched-native-s1702 0e66d50f97b19f98846ce072b52739a2daf8612790cff5e20fbccd99d45e43d2 55
+
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+matched-edgar-s1702 dd452db2e02608f1fa1ebf021e0843a2d0204b43b43f6f086f448ec678080aa4 55
+
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+matched-edgar-s1703 2bfbe843e93836cf2a5e3e5a6b4d5f8988ca83f5f2b7ff71440c645e82bd7bff 55
+
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+matched-native-s1703 a84b9c381b74fc74297020ed904e26d930d7ca1fe3572f16a0b2744f93ccad73 55
+
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+matched-real-s1702 257a97cf17547f044045ff34b2e79c1ab0e3a985cfab3dfc3d076a81e33ff63b 55
+
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+matched-real-s1703 1ee8d4561e3584da3bb9eba38fc4d922668702c4f93117e0ab00d0a0f94f8a1e 55

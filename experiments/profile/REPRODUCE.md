@@ -90,7 +90,7 @@ for name in full-base full-native full-real full-elite full-edgar full-blend mat
 done
 ```
 
-原生键控筛出的 20 个相机、各自的 alpha、锐化系数和暗孔处理固定。ELITE 与 EDGAR 替换这些像素的 RGB，各使用同一张正脸身份参考。上游 train_avatar.sh 为每个方法单独初始化未训练的高斯模型。基座生成训练标签。结果报告的受控比较用 --shared-init 额外指定原生 SyncFix 的统一初始 PLY，保留已保存的表情权重网络。四个带有修复图的配方都按 2 张修复配 6 张真实图开始，计划在步数预算的后半程改为 1 张配 7 张。所有分组按相同的验证规则选模。仅真实图的完整对照每步取 8 张真实帧。扩散全部发生在制作标签时，最终头像由原有光栅器渲染。上游 init_uv.py 未固定其表情网络的随机初值。新机器上的完整重跑会生成另一个初始 PLY，各方法在该次运行内部仍共享它。想精确复用这次的初值，可使用原工作机 RUN/full-repo/tmp/subject_avatar_unified.ply；SHA-256 记录在 verification.json。
+原生键控筛出的 20 个相机、各自的 alpha、锐化系数和暗孔处理固定。ELITE 与 EDGAR 替换这些像素的 RGB，各使用同一张正脸身份参考。上游 train_avatar.sh 为每个方法单独初始化未训练的高斯模型。基座生成训练标签。结果报告的受控比较用 --shared-init 额外指定原生 SyncFix 的统一初始 PLY，保留已保存的表情权重网络。带有修复图的完整配方都按 2 张修复配 6 张真实图开始，计划在步数预算的后半程改为 1 张配 7 张。所有分组按相同的验证规则选模。仅真实图的完整对照每步取 8 张真实帧。扩散全部发生在制作标签时，最终头像由原有光栅器渲染。上游 init_uv.py 未固定其表情网络的随机初值。新机器上的完整重跑会生成另一个初始 PLY，各方法在该次运行内部仍共享它。想精确复用这次的初值，可使用原工作机 RUN/full-repo/tmp/subject_avatar_unified.ply；SHA-256 记录在 verification.json。
 
 对应单张照片和渲染的本地对照图可在完成以上评测后生成。
 
@@ -100,7 +100,7 @@ done
 
 ## Difix 完整配方与训练种子复测
 
-沿用上文创建的 RUN 和 20 个修复相机。下面的训练会复用原生 SyncFix 的初始 PLY。两个追加种子分别作用于 3D 训练，教师图保持固定。原生组直接使用上游的 `datasets/subject/repair/repairs` 目录。
+沿用上文创建的 RUN 和 20 个修复相机。下面的训练会复用原生 SyncFix 的初始 PLY。两个追加种子分别作用于 3D 训练，教师图保持固定。real 是在看到大角度皮肤掩模结果后增加的真实帧对照。原生组直接使用上游的 `datasets/subject/repair/repairs` 目录。
 
 ```bash
 set -e
@@ -111,10 +111,34 @@ PYTHONPATH="$LEGACY_SITE:$PWD/src" "$PYTHON_BIN" -u experiments/profile/difix.py
 bash experiments/profile/train_full_control.sh difix --shared-init 1701 > "$RUN/matched-difix.log" 2>&1
 PYTHONPATH="$PWD/src" "$PYTHON_BIN" experiments/profile/score.py "$RUN" matched-difix > "$RUN/matched-difix-score.log" 2>&1
 for seed in 1702 1703; do
-  for method in native edgar; do
+  for method in native edgar real; do
     name="matched-$method-s$seed"
     bash experiments/profile/train_full_control.sh "$method" --shared-init "$seed" > "$RUN/$name.log" 2>&1
     PYTHONPATH="$PWD/src" "$PYTHON_BIN" experiments/profile/score.py "$RUN" "$name" > "$RUN/$name-score.log" 2>&1
   done
 done
+```
+
+## 评测留出的真实大角度照片
+
+从同一采集按登记规则选取原有 311 帧之外的照片。本步骤只加载既有正脸 rig 和已训练的模型。运行下面的命令前需已训练好上面对应的模型。在工作机上，实拍和渲染会写入 RUN/wide，公开日志仅包含指标与帧号。
+
+```bash
+set -e
+"$PYTHON_BIN" experiments/profile/prepare_wide.py "$WORKSPACE/runs/capture-3d" "$RUN"
+"$PYTHON_BIN" experiments/profile/skin.py prepare "$RUN" "$ASSETS/models/selfie_multiclass.tflite"
+while IFS=, read -r method rest; do
+  if [[ "$method" == method ]]; then continue; fi
+  PYTHONPATH="$PWD/src" "$PYTHON_BIN" experiments/profile/score.py "$RUN" "$method" --wide > "$RUN/wide/$method.log" 2>&1
+  "$PYTHON_BIN" experiments/profile/skin.py score "$RUN" "$method"
+done < experiments/profile/summary.csv
+"$PYTHON_BIN" experiments/profile/figure.py "$RUN" "$RUN/wide-comparison.jpg" --wide
+"$PYTHON_BIN" experiments/profile/figure.py "$RUN" "$RUN/seed-comparison.jpg" --seed-comparison
+```
+
+使用仓库中的逐帧日志即可复核两个评测集及同种子配对，命令按顺序运行。
+
+```bash
+python3 experiments/profile/compare.py
+python3 experiments/profile/compare_wide.py
 ```

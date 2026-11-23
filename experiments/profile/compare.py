@@ -12,7 +12,12 @@ SHORT = [
     "elite", "eg3d", "fate-prior", "morphable",
 ]
 FULL = ["full-base", "full-real", "full-native", "full-elite", "full-edgar", "full-blend"]
-MATCHED = ["matched-real", "matched-elite", "matched-edgar", "matched-blend"]
+MATCHED = ["matched-real", "matched-elite", "matched-edgar", "matched-blend", "matched-difix"]
+SEED_PAIRS = {
+    1701: ("full-native", "matched-edgar"),
+    1702: ("matched-native-s1702", "matched-edgar-s1702"),
+    1703: ("matched-native-s1703", "matched-edgar-s1703"),
+}
 METRICS = ("psnr", "lpips")
 
 
@@ -78,23 +83,59 @@ def audit_method(method, expected, split_hash):
     return out, samples
 
 
+def paired_scores(reference, candidate, group):
+    if group == "side":
+        pairs = [(a, b) for a, b in zip(reference, candidate, strict=True) if a["group"] != "front"]
+    else:
+        pairs = [(a, b) for a, b in zip(reference, candidate, strict=True) if a["group"] == group]
+    result = {"n": len(pairs)}
+    for metric in METRICS:
+        ref = [float(a[metric]) for a, _ in pairs]
+        values = [float(b[metric]) for _, b in pairs]
+        diffs = [value - base for value, base in zip(values, ref, strict=True)]
+        result[f"reference_{metric}"] = round(mean(ref), 7)
+        result[f"candidate_{metric}"] = round(mean(values), 7)
+        result[f"delta_{metric}"] = round(mean(diffs), 7)
+        result[f"wins_{metric}"] = sum(d > 0 if metric == "psnr" else d < 0 for d in diffs)
+    return result
+
+
+def repeated_pairs():
+    for seed, (native, edgar) in SEED_PAIRS.items():
+        yield seed, native, edgar
+        real = "matched-real" if seed == 1701 else f"matched-real-s{seed}"
+        yield seed, native, real
+
+
 def main():
     expected, split_hash = audit_split(ROOT / "logs" / "split.csv")
+    references = {m: "real" for m in SHORT}
+    references.update({m: "full-native" for m in FULL + MATCHED})
+    for _, native, candidate in repeated_pairs():
+        references.update({native: native, candidate: native})
+
     summaries, comparisons, data = [], [], {}
-    for method in SHORT + FULL + MATCHED:
+    for method in references:
         summary, data[method] = audit_method(method, expected, split_hash)
         summaries.append(summary)
-    for method, samples in data.items():
-        reference = "full-native" if method in FULL + MATCHED else "real"
-        pairs = [(r, b) for r, b in zip(samples, data[reference], strict=True) if r["group"] != "front"]
-        comparison = {"method": method, "reference": reference, "side_frames": len(pairs)}
+    for method, reference in references.items():
+        scores = paired_scores(data[reference], data[method], "side")
+        comparison = {"method": method, "reference": reference, "side_frames": scores["n"]}
         for metric in METRICS:
-            diffs = [float(r[metric]) - float(b[metric]) for r, b in pairs]
-            comparison[f"delta_{metric}"] = round(mean(diffs), 7)
-            comparison[f"wins_{metric}"] = sum(d > 0 if metric == "psnr" else d < 0 for d in diffs)
+            for kind in ("delta", "wins"):
+                key = f"{kind}_{metric}"
+                comparison[key] = scores[key]
         comparisons.append(comparison)
+
+    repeated = []
+    for seed, native, candidate in repeated_pairs():
+        for group in ("side", "negative", "positive", "front"):
+            row = {"seed": seed, "reference": native, "candidate": candidate, "group": group}
+            row.update(paired_scores(data[native], data[candidate], group))
+            repeated.append(row)
     write(ROOT / "summary.csv", summaries)
     write(ROOT / "paired.csv", comparisons)
+    write(ROOT / "seed-pairs.csv", repeated)
     print(f"{len(summaries)} frozen models, {len(expected)} matched frames each, six identical sweep cameras per model.")
 
 
