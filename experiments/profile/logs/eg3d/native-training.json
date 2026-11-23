@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "eg3d",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 20.53020946297329,
+  "best_psnr": 110.45411543430394,
+  "best_iteration": 249,
+  "best_seconds": 19.7,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 20.5
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 21.4
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 22.080617904663086,
+      "ssim": 0.8581282781574142,
+      "lpips": 0.09065832756459713,
+      "score": 110.45411543430394,
+      "hole_mean": 0.00414,
+      "hole_p90": 0.01168,
+      "deficit_mean": 0.00601,
+      "deficit_p90": 0.01243,
+      "opaque_outside_flame": 0.05436492656664437,
+      "outside_mean": 0.05436492656664437,
+      "robust": 22.039217904663087
+    }
+  ],
+  "stopped_early": false
+}

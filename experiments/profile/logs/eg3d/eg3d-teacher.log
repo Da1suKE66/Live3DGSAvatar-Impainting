@@ -1,0 +1,21 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1795449862.194032 2204210 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1795449862.201073 2204213 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795449862.215941 2204228 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+inversion 0 0.361666
+inversion 20 0.140156
+inversion 40 0.11809
+inversion 60 0.107524
+inversion 80 0.099874
+inversion 100 0.092986
+inversion 120 0.087376
+inversion 140 0.082103
+inversion 159 0.078593
+landmark RMSE in pixels {1: [30.77778771365197, 21.333282701136334, 14.898208039361304, 13.732641165314682, 22.970953376813824, 30.72496933449965], -1: [8.721023326332864, 6.437158422937248, 4.1438973621038215, 4.516093897933941, 6.870427911233199, 9.622603367818593]} chosen yaw sign -1
