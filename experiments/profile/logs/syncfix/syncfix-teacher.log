@@ -1,0 +1,139 @@
+  数据集 : $WORKSPACE/runs/profile-v1/datasets/subject（224 帧，训练段 192）
+  模型   : $WORKSPACE/runs/profile-v1/models/subject/base/model.ply
+  基帧   : 00044（|yaw| 0.1°）
+  视角   : 相机绕转（pose 驱动不可用：缺少 FLAME 模型：data/FLAME2020/generic_model.pkl）
+  yaw-50_pitch+0_roll+0_frame00044  (yaw -50.0°, pitch +0.0°)
+  yaw-35_pitch+0_roll+0_frame00044  (yaw -35.0°, pitch +0.0°)
+  yaw-20_pitch+0_roll+0_frame00044  (yaw -20.0°, pitch +0.0°)
+  yaw+20_pitch+0_roll+0_frame00044  (yaw +20.0°, pitch +0.0°)
+  yaw+35_pitch+0_roll+0_frame00044  (yaw +35.0°, pitch +0.0°)
+  yaw+50_pitch+0_roll+0_frame00044  (yaw +50.0°, pitch +0.0°)
+  参考图 : 追加 2 张真实帧 ['00191', '00000']
+  参考图 : 3 张（目标 ≥3）-> runs/profile-v1/teachers/shared/refs
+  输出   : runs/profile-v1/teachers/shared/views
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/teachers/shared/_g_pos_0/views --ref_image $WORKSPACE/runs/profile-v1/teachers/shared/_g_pos_0/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/teachers/shared/_g_pos_0/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Downloading: "https://download.pytorch.org/models/vgg16-397923af.pth" to /home/lakeside/.cache/torch/hub/checkpoints/vgg16-397923af.pth
+
+  0%|          | 0.00/528M [00:00<?, ?B/s]
+  1%|          | 5.75M/528M [00:00<00:09, 60.1MB/s]
+  2%|▏         | 11.9M/528M [00:00<00:08, 61.9MB/s]
+  3%|▎         | 17.9M/528M [00:00<00:08, 62.3MB/s]
+  5%|▍         | 23.9M/528M [00:00<00:08, 62.3MB/s]
+  6%|▌         | 29.9M/528M [00:00<00:08, 62.4MB/s]
+  7%|▋         | 35.9M/528M [00:00<00:08, 62.4MB/s]
+  8%|▊         | 42.0M/528M [00:00<00:08, 62.5MB/s]
+  9%|▉         | 48.1M/528M [00:00<00:08, 62.2MB/s]
+ 10%|█         | 54.2M/528M [00:00<00:07, 62.7MB/s]
+ 11%|█▏        | 60.2M/528M [00:01<00:07, 62.2MB/s]
+ 13%|█▎        | 66.4M/528M [00:01<00:07, 62.7MB/s]
+ 14%|█▎        | 72.4M/528M [00:01<00:08, 56.8MB/s]
+ 15%|█▍        | 78.0M/528M [00:01<00:08, 54.8MB/s]
+ 16%|█▌        | 84.0M/528M [00:01<00:08, 56.9MB/s]
+ 17%|█▋        | 90.0M/528M [00:01<00:07, 58.6MB/s]
+ 18%|█▊        | 96.0M/528M [00:01<00:07, 59.6MB/s]
+ 19%|█▉        | 102M/528M [00:01<00:07, 60.6MB/s] 
+ 21%|██        | 108M/528M [00:01<00:07, 61.3MB/s]
+ 22%|██▏       | 114M/528M [00:01<00:07, 61.7MB/s]
+ 23%|██▎       | 120M/528M [00:02<00:06, 62.0MB/s]
+ 24%|██▍       | 126M/528M [00:02<00:06, 62.1MB/s]
+ 25%|██▌       | 133M/528M [00:02<00:06, 62.4MB/s]
+ 26%|██▋       | 139M/528M [00:02<00:06, 62.4MB/s]
+ 27%|██▋       | 145M/528M [00:02<00:06, 62.5MB/s]
+ 29%|██▊       | 151M/528M [00:02<00:06, 62.7MB/s]
+ 30%|██▉       | 157M/528M [00:02<00:06, 62.6MB/s]
+ 31%|███       | 163M/528M [00:02<00:06, 62.8MB/s]
+ 32%|███▏      | 169M/528M [00:02<00:06, 62.6MB/s]
+ 33%|███▎      | 175M/528M [00:02<00:05, 62.7MB/s]
+ 34%|███▍      | 181M/528M [00:03<00:05, 62.8MB/s]
+ 35%|███▌      | 187M/528M [00:03<00:05, 62.6MB/s]
+ 37%|███▋      | 193M/528M [00:03<00:05, 62.6MB/s]
+ 38%|███▊      | 199M/528M [00:03<00:05, 62.5MB/s]
+ 39%|███▉      | 205M/528M [00:03<00:05, 62.6MB/s]
+ 40%|████      | 211M/528M [00:03<00:05, 62.7MB/s]
+ 41%|████      | 217M/528M [00:03<00:05, 62.7MB/s]
+ 42%|████▏     | 223M/528M [00:03<00:05, 62.7MB/s]
+ 43%|████▎     | 229M/528M [00:03<00:04, 62.6MB/s]
+ 45%|████▍     | 235M/528M [00:04<00:05, 55.4MB/s]
+ 46%|████▌     | 241M/528M [00:04<00:05, 55.6MB/s]
+ 47%|████▋     | 247M/528M [00:04<00:05, 57.5MB/s]
+ 48%|████▊     | 253M/528M [00:04<00:04, 59.0MB/s]
+ 49%|████▉     | 259M/528M [00:04<00:04, 59.9MB/s]
+ 50%|█████     | 265M/528M [00:04<00:04, 60.8MB/s]
+ 51%|█████▏    | 271M/528M [00:04<00:04, 60.9MB/s]
+ 52%|█████▏    | 277M/528M [00:04<00:04, 61.7MB/s]
+ 54%|█████▎    | 283M/528M [00:04<00:04, 61.5MB/s]
+ 55%|█████▍    | 289M/528M [00:04<00:04, 61.9MB/s]
+ 56%|█████▌    | 295M/528M [00:05<00:03, 61.8MB/s]
+ 57%|█████▋    | 301M/528M [00:05<00:03, 62.4MB/s]
+ 58%|█████▊    | 307M/528M [00:05<00:03, 62.3MB/s]
+ 59%|█████▉    | 313M/528M [00:05<00:03, 62.7MB/s]
+ 60%|██████    | 319M/528M [00:05<00:03, 62.3MB/s]
+ 62%|██████▏   | 325M/528M [00:05<00:03, 62.6MB/s]
+ 63%|██████▎   | 331M/528M [00:05<00:03, 62.5MB/s]
+ 64%|██████▍   | 338M/528M [00:05<00:03, 62.5MB/s]
+ 65%|██████▌   | 344M/528M [00:05<00:03, 62.8MB/s]
+ 66%|██████▌   | 350M/528M [00:05<00:02, 62.6MB/s]
+ 67%|██████▋   | 356M/528M [00:06<00:02, 62.9MB/s]
+ 69%|██████▊   | 362M/528M [00:06<00:02, 62.2MB/s]
+ 70%|██████▉   | 368M/528M [00:06<00:02, 62.7MB/s]
+ 71%|███████   | 374M/528M [00:06<00:02, 62.3MB/s]
+ 72%|███████▏  | 380M/528M [00:06<00:02, 54.4MB/s]
+ 73%|███████▎  | 385M/528M [00:06<00:02, 55.1MB/s]
+ 74%|███████▍  | 391M/528M [00:06<00:02, 57.1MB/s]
+ 75%|███████▌  | 398M/528M [00:06<00:02, 58.9MB/s]
+ 76%|███████▋  | 403M/528M [00:06<00:02, 55.2MB/s]
+ 77%|███████▋  | 409M/528M [00:07<00:02, 52.7MB/s]
+ 79%|███████▊  | 415M/528M [00:07<00:02, 55.4MB/s]
+ 80%|███████▉  | 421M/528M [00:07<00:01, 57.5MB/s]
+ 81%|████████  | 427M/528M [00:07<00:01, 58.9MB/s]
+ 82%|████████▏ | 433M/528M [00:07<00:01, 60.0MB/s]
+ 83%|████████▎ | 439M/528M [00:07<00:01, 60.7MB/s]
+ 84%|████████▍ | 445M/528M [00:07<00:01, 61.3MB/s]
+ 85%|████████▌ | 451M/528M [00:07<00:01, 61.7MB/s]
+ 87%|████████▋ | 457M/528M [00:07<00:01, 62.0MB/s]
+ 88%|████████▊ | 463M/528M [00:07<00:01, 62.5MB/s]
+ 89%|████████▉ | 469M/528M [00:08<00:00, 62.2MB/s]
+ 90%|████████▉ | 475M/528M [00:08<00:00, 62.6MB/s]
+ 91%|█████████ | 481M/528M [00:08<00:00, 62.3MB/s]
+ 92%|█████████▏| 487M/528M [00:08<00:00, 62.6MB/s]
+ 93%|█████████▎| 493M/528M [00:08<00:00, 62.6MB/s]
+ 95%|█████████▍| 499M/528M [00:08<00:00, 62.8MB/s]
+ 96%|█████████▌| 505M/528M [00:08<00:00, 62.8MB/s]
+ 97%|█████████▋| 511M/528M [00:08<00:00, 62.7MB/s]
+ 98%|█████████▊| 517M/528M [00:08<00:00, 62.7MB/s]
+ 99%|█████████▉| 523M/528M [00:08<00:00, 62.5MB/s]
+100%|██████████| 528M/528M [00:09<00:00, 61.0MB/s]
+INFO:root:Loading safetensors file: model.safetensors
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.81it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.81it/s]
+
+Saving images:   0%|          | 0/3 [00:00<?, ?it/s]
+Saving images: 100%|██████████| 3/3 [00:00<00:00, 28.42it/s]
+Saving images: 100%|██████████| 3/3 [00:00<00:00, 28.39it/s]
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/teachers/shared/_g_neg_0/views --ref_image $WORKSPACE/runs/profile-v1/teachers/shared/_g_neg_0/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/teachers/shared/_g_neg_0/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+INFO:root:Loading safetensors file: model.safetensors
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.85it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.85it/s]
+
+Saving images:   0%|          | 0/3 [00:00<?, ?it/s]
+Saving images: 100%|██████████| 3/3 [00:00<00:00, 28.49it/s]
+Saving images: 100%|██████████| 3/3 [00:00<00:00, 28.45it/s]
+  修复图 : 6 张（mask=key）-> runs/profile-v1/labels/native-syncfix
