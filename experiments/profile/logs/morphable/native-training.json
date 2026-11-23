@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "morphable",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 24.568175635067746,
+  "best_psnr": 108.8906216296671,
+  "best_iteration": 249,
+  "best_seconds": 23.7,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 24.6
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 25.4
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 21.336026191711426,
+      "ssim": 0.8442198323110605,
+      "lpips": 0.09312792355194688,
+      "score": 108.8906216296671,
+      "hole_mean": 0.00396,
+      "hole_p90": 0.01269,
+      "deficit_mean": 0.00651,
+      "deficit_p90": 0.01434,
+      "opaque_outside_flame": 0.05724228710189203,
+      "outside_mean": 0.05724228710189203,
+      "robust": 21.296426191711426
+    }
+  ],
+  "stopped_early": false
+}

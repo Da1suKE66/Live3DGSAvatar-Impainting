@@ -1,0 +1,95 @@
+The cache for model files in Transformers v4.22.0 has been updated. Migrating your old cache. This is a one-time only operation. You can interrupt this and resume the migration later on by calling `transformers.utils.move_cache()`.
+
+0it [00:00, ?it/s]
+0it [00:00, ?it/s]
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:47: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  _TORCH_CUSTOM_FWD = amp.custom_fwd(cast_inputs=torch.float16)
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:96: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @_TORCH_CUSTOM_BWD
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:162: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @_TORCH_CUSTOM_BWD
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:242: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @_TORCH_CUSTOM_BWD
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:331: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @_TORCH_CUSTOM_BWD
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:368: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @_TORCH_CUSTOM_BWD
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:388: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @_TORCH_CUSTOM_BWD
+$WORKSPACE/.deps/profile-md/spconv/pytorch/functional.py:411: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  @_TORCH_CUSTOM_BWD
+making attention of type 'vanilla' with 512 in_channels
+Working with z of shape (1, 4, 32, 32) = 4096 dimensions.
+making attention of type 'vanilla' with 512 in_channels
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+state keys 0 missing [] 3 extra ['poses', 'Ks', 'azimuth']
+Selected timesteps for ddim sampler: [  1  21  41  61  81 101 121 141 161 181 201 221 241 261 281 301 321 341
+ 361 381 401 421 441 461 481 501 521 541 561 581 601 621 641 661 681 701
+ 721 741 761 781 801 821 841 861 881 901 921 941 961 981]
+unconditional scale 2.0
+
+DDIM Sampler:   0%|          | 0/50 [00:00<?, ?it/s]<shared-torch>/.venv/lib/python3.11/site-packages/torch/functional.py:505: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at /pytorch/aten/src/ATen/native/TensorShape.cpp:4317.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+W1123 08:13:47.377000 2206919 torch/fx/_symbolic_trace.py:52] is_fx_tracing will return true for both fx.symbolic_trace and torch.export. Please use is_fx_tracing_symbolic_tracing() for specifically fx.symbolic_trace or torch.compiler.is_compiling() for specifically torch.export/compile.
+$WORKSPACE/.deps/profile-md/spconv/pytorch/core.py:127: UserWarning: Using a non-tuple sequence for multidimensional indexing is deprecated and will be changed in pytorch 2.9; use x[tuple(seq)] instead of x[seq]. In pytorch 2.9 this will be interpreted as tensor index, x[torch.tensor(seq)], which will result either in an error or a different result (Triggered internally at /pytorch/torch/csrc/autograd/python_variable_indexing.cpp:345.)
+  ret[slices] = updates.view(*output_shape)
+
+DDIM Sampler:   2%|▏         | 1/50 [00:00<00:25,  1.96it/s]
+DDIM Sampler:   4%|▍         | 2/50 [00:00<00:19,  2.40it/s]
+DDIM Sampler:   6%|▌         | 3/50 [00:01<00:18,  2.57it/s]
+DDIM Sampler:   8%|▊         | 4/50 [00:01<00:17,  2.65it/s]
+DDIM Sampler:  10%|█         | 5/50 [00:01<00:16,  2.69it/s]
+DDIM Sampler:  12%|█▏        | 6/50 [00:02<00:16,  2.73it/s]
+DDIM Sampler:  14%|█▍        | 7/50 [00:02<00:15,  2.75it/s]
+DDIM Sampler:  16%|█▌        | 8/50 [00:03<00:15,  2.77it/s]
+DDIM Sampler:  18%|█▊        | 9/50 [00:03<00:14,  2.75it/s]
+DDIM Sampler:  20%|██        | 10/50 [00:03<00:14,  2.75it/s]
+DDIM Sampler:  22%|██▏       | 11/50 [00:04<00:14,  2.75it/s]
+DDIM Sampler:  24%|██▍       | 12/50 [00:04<00:13,  2.75it/s]
+DDIM Sampler:  26%|██▌       | 13/50 [00:04<00:13,  2.74it/s]
+DDIM Sampler:  28%|██▊       | 14/50 [00:05<00:13,  2.75it/s]
+DDIM Sampler:  30%|███       | 15/50 [00:05<00:12,  2.74it/s]
+DDIM Sampler:  32%|███▏      | 16/50 [00:05<00:12,  2.75it/s]
+DDIM Sampler:  34%|███▍      | 17/50 [00:06<00:11,  2.76it/s]
+DDIM Sampler:  36%|███▌      | 18/50 [00:06<00:11,  2.77it/s]
+DDIM Sampler:  38%|███▊      | 19/50 [00:07<00:11,  2.75it/s]
+DDIM Sampler:  40%|████      | 20/50 [00:07<00:10,  2.76it/s]
+DDIM Sampler:  42%|████▏     | 21/50 [00:07<00:10,  2.76it/s]
+DDIM Sampler:  44%|████▍     | 22/50 [00:08<00:10,  2.76it/s]
+DDIM Sampler:  46%|████▌     | 23/50 [00:08<00:09,  2.76it/s]
+DDIM Sampler:  48%|████▊     | 24/50 [00:08<00:09,  2.76it/s]
+DDIM Sampler:  50%|█████     | 25/50 [00:09<00:09,  2.77it/s]
+DDIM Sampler:  52%|█████▏    | 26/50 [00:09<00:08,  2.77it/s]
+DDIM Sampler:  54%|█████▍    | 27/50 [00:09<00:08,  2.75it/s]
+DDIM Sampler:  56%|█████▌    | 28/50 [00:10<00:07,  2.77it/s]
+DDIM Sampler:  58%|█████▊    | 29/50 [00:10<00:07,  2.77it/s]
+DDIM Sampler:  60%|██████    | 30/50 [00:10<00:07,  2.76it/s]
+DDIM Sampler:  62%|██████▏   | 31/50 [00:11<00:06,  2.77it/s]
+DDIM Sampler:  64%|██████▍   | 32/50 [00:11<00:06,  2.77it/s]
+DDIM Sampler:  66%|██████▌   | 33/50 [00:12<00:06,  2.77it/s]
+DDIM Sampler:  68%|██████▊   | 34/50 [00:12<00:05,  2.77it/s]
+DDIM Sampler:  70%|███████   | 35/50 [00:12<00:05,  2.77it/s]
+DDIM Sampler:  72%|███████▏  | 36/50 [00:13<00:05,  2.77it/s]
+DDIM Sampler:  74%|███████▍  | 37/50 [00:13<00:04,  2.77it/s]
+DDIM Sampler:  76%|███████▌  | 38/50 [00:13<00:04,  2.77it/s]
+DDIM Sampler:  78%|███████▊  | 39/50 [00:14<00:03,  2.77it/s]
+DDIM Sampler:  80%|████████  | 40/50 [00:14<00:03,  2.76it/s]
+DDIM Sampler:  82%|████████▏ | 41/50 [00:14<00:03,  2.76it/s]
+DDIM Sampler:  84%|████████▍ | 42/50 [00:15<00:02,  2.76it/s]
+DDIM Sampler:  86%|████████▌ | 43/50 [00:15<00:02,  2.77it/s]
+DDIM Sampler:  88%|████████▊ | 44/50 [00:16<00:02,  2.77it/s]
+DDIM Sampler:  90%|█████████ | 45/50 [00:16<00:01,  2.78it/s]
+DDIM Sampler:  92%|█████████▏| 46/50 [00:16<00:01,  2.79it/s]
+DDIM Sampler:  94%|█████████▍| 47/50 [00:17<00:01,  2.78it/s]
+DDIM Sampler:  96%|█████████▌| 48/50 [00:17<00:00,  2.78it/s]
+DDIM Sampler:  98%|█████████▊| 49/50 [00:17<00:00,  2.77it/s]
+DDIM Sampler: 100%|██████████| 50/50 [00:18<00:00,  2.75it/s]
+DDIM Sampler: 100%|██████████| 50/50 [00:18<00:00,  2.74it/s]
+yaw-50_pitch+0_roll+0_frame00044.png
+yaw-35_pitch+0_roll+0_frame00044.png
+yaw-20_pitch+0_roll+0_frame00044.png
+yaw+20_pitch+0_roll+0_frame00044.png
+yaw+35_pitch+0_roll+0_frame00044.png
+yaw+50_pitch+0_roll+0_frame00044.png

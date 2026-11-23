@@ -1,0 +1,9 @@
+python experiments/profile/probe.py morphable-diffusion <author-repo> <prepared-subject>
+method morphable-diffusion upstream https://github.com/xiyichen/morphablediffusion.git commit cf10aa8381da2923b70ed24f0bfbf4847117afe2
+subject mesh (224, 468, 3) drive (224, 129) cameras (4, 4)
+generate_face.sh first runs MICA and metrical-tracker on the expression frame
+template FLAME vertices 5023
+missing generic_model.pkl
+missing 00001.ply
+input check: blocked before same-subject inference
+exit 2
