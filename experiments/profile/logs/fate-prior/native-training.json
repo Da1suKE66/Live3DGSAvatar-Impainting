@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "fate-prior",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 21.32408888998907,
+  "best_psnr": 110.77448918848118,
+  "best_iteration": 249,
+  "best_seconds": 20.5,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 21.3
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 22.2
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 22.059691429138184,
+      "ssim": 0.8594488401321334,
+      "lpips": 0.0851528849452734,
+      "score": 110.77448918848118,
+      "hole_mean": 0.00456,
+      "hole_p90": 0.0116,
+      "deficit_mean": 0.00679,
+      "deficit_p90": 0.01293,
+      "opaque_outside_flame": 0.05543629959201956,
+      "outside_mean": 0.05543629959201956,
+      "robust": 22.014091429138183
+    }
+  ],
+  "stopped_early": false
+}

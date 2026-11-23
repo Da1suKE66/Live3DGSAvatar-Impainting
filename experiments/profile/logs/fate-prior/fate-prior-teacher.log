@@ -1,0 +1,11 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1795450144.818357 2205580 face_landmarker_graph.cc:174] Sets FaceBlendshapesGraph acceleration to xnnpack by default.
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+W0000 00:00:1795450144.825172 2205584 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+W0000 00:00:1795450144.834508 2205595 inference_feedback_manager.cc:114] Feedback manager requires a model with a single signature inference. Disabling support for feedback tensors.
+yaw+20_pitch+0_roll+0_frame00044.png
+yaw+35_pitch+0_roll+0_frame00044.png
+yaw+50_pitch+0_roll+0_frame00044.png
+yaw-20_pitch+0_roll+0_frame00044.png
+yaw-35_pitch+0_roll+0_frame00044.png
+yaw-50_pitch+0_roll+0_frame00044.png
