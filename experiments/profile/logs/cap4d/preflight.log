@@ -1,0 +1,10 @@
+python experiments/profile/probe.py cap4d <author-repo> <prepared-subject>
+method cap4d upstream https://github.com/felixtaubner/cap4d.git commit 1f25e99702ab5c0b38aa5e195fdd6cd963fa528c
+subject mesh (224, 468, 3) drive (224, 129) cameras (4, 4)
+official example keys ['camera_order', 'cx', 'cy', 'detection_boxes', 'error', 'expr', 'extr', 'eye_rot', 'fps', 'fx', 'fy', 'n_timesteps', 'n_views', 'resolutions', 'rot', 'shape', 'tra', 'valid_mask'] expression shape (1, 65)
+CAP4DInferenceDataset instantiates CAP4DFlameSkinner before decoding reference inputs
+missing flame2023_no_jaw.pkl
+missing fit.npz
+missing reference_images.json
+input check: blocked before same-subject inference
+exit 2
