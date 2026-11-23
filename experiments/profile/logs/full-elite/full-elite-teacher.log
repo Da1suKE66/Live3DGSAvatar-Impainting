@@ -1,0 +1,56 @@
+$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+$WORKSPACE/.deps/profile-legacy/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+$WORKSPACE/.deps/profile-legacy/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+mv_unet is used
+==================================================
+Number of trainable parameters in UNet: 865.91M
+Number of trainable parameters in VAE: 0.52M
+==================================================
+
+Running inference:   0%|          | 0/20 [00:00<?, ?it/s]
+Running inference:   5%|▌         | 1/20 [00:00<00:09,  1.98it/s]
+Running inference:  10%|█         | 2/20 [00:00<00:07,  2.48it/s]
+Running inference:  15%|█▌        | 3/20 [00:01<00:06,  2.67it/s]
+Running inference:  20%|██        | 4/20 [00:01<00:05,  2.81it/s]
+Running inference:  25%|██▌       | 5/20 [00:01<00:05,  2.89it/s]
+Running inference:  30%|███       | 6/20 [00:02<00:04,  2.94it/s]
+Running inference:  35%|███▌      | 7/20 [00:02<00:04,  2.95it/s]
+Running inference:  40%|████      | 8/20 [00:02<00:04,  2.98it/s]
+Running inference:  45%|████▌     | 9/20 [00:03<00:03,  3.00it/s]
+Running inference:  50%|█████     | 10/20 [00:03<00:03,  3.01it/s]
+Running inference:  55%|█████▌    | 11/20 [00:03<00:02,  3.02it/s]
+Running inference:  60%|██████    | 12/20 [00:04<00:02,  3.03it/s]
+Running inference:  65%|██████▌   | 13/20 [00:04<00:02,  3.04it/s]
+Running inference:  70%|███████   | 14/20 [00:04<00:01,  3.04it/s]
+Running inference:  75%|███████▌  | 15/20 [00:05<00:01,  3.04it/s]
+Running inference:  80%|████████  | 16/20 [00:05<00:01,  3.04it/s]
+Running inference:  85%|████████▌ | 17/20 [00:05<00:00,  3.04it/s]
+Running inference:  90%|█████████ | 18/20 [00:06<00:00,  3.05it/s]
+Running inference:  95%|█████████▌| 19/20 [00:06<00:00,  3.04it/s]
+Running inference: 100%|██████████| 20/20 [00:06<00:00,  3.04it/s]
+Running inference: 100%|██████████| 20/20 [00:06<00:00,  2.95it/s]
+yaw+10_pitch+0_roll+0_frame00044.png
+yaw+15_pitch+0_roll+0_frame00044.png
+yaw+20_pitch+0_roll+0_frame00044.png
+yaw+25_pitch+0_roll+0_frame00044.png
+yaw+30_pitch+0_roll+0_frame00044.png
+yaw+35_pitch+0_roll+0_frame00044.png
+yaw+40_pitch+0_roll+0_frame00044.png
+yaw+45_pitch+0_roll+0_frame00044.png
+yaw+50_pitch+0_roll+0_frame00044.png
+yaw+55_pitch+0_roll+0_frame00044.png
+yaw+60_pitch+0_roll+0_frame00044.png
+yaw+65_pitch+0_roll+0_frame00044.png
+yaw+70_pitch+0_roll+0_frame00044.png
+yaw+75_pitch+0_roll+0_frame00044.png
+yaw+80_pitch+0_roll+0_frame00044.png
+yaw+85_pitch+0_roll+0_frame00044.png
+yaw+90_pitch+0_roll+0_frame00044.png
+yaw-10_pitch+0_roll+0_frame00044.png
+yaw-15_pitch+0_roll+0_frame00044.png
+yaw-5_pitch+0_roll+0_frame00044.png
