@@ -1,0 +1,22 @@
+{
+  "method": "morphable",
+  "weights": "7ba38e7e36b69696e6573a33e8ac13aac94ea83b1cccf61bf7ddc2ef1b4f9f8b",
+  "frames_sha256": "c10d48bc18686c55a24bcc8cdcb937f48d3e32812cd1073d2b60ba81515a8c36",
+  "groups": {
+    "negative": {
+      "n": 22,
+      "psnr": 15.448238957099893,
+      "lpips": 0.16558312286030163
+    },
+    "positive": {
+      "n": 33,
+      "psnr": 15.89987938745542,
+      "lpips": 0.17766477890086896
+    },
+    "side": {
+      "n": 55,
+      "psnr": 15.71922321531321,
+      "lpips": 0.17283211648464203
+    }
+  }
+}
