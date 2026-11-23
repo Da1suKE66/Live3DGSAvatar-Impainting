@@ -32,8 +32,9 @@ def write_csv(path,rows):
 
 
 @torch.inference_mode()
-def score(run,method):
-    out = run/'scores'/method
+def score(run,method,wide=False):
+    evaluation = run/'wide' if wide else run
+    out = evaluation/'scores'/method
     out.mkdir(parents=True,exist_ok=False)
     ply = run/'models/subject'/method/'model.ply'
     model = load_ply(ply,config=read_embedded_config(ply),device='cuda')
@@ -42,13 +43,14 @@ def score(run,method):
     topology = Path(yaml.safe_load((run/'local.yaml').read_text())['paths']['mesh_topology'])
     with np.load(topology) as z:
         topo = {k:torch.tensor(z[k],device='cuda') for k in ('faces','uv_faces','uvs')}
-    with (run/'frames.csv').open() as f:
+    with (evaluation/'frames.csv').open() as f:
         frames = list(csv.DictReader(f))
     bg = torch.zeros((1,3,1,1),device='cuda')
     rows = []
     virtual = []
-    for split in ('heldout','subject'):
-        data = run/'datasets'/split
+    splits = ('heldout',) if wide else ('heldout','subject')
+    for split in splits:
+        data = evaluation/'datasets'/split
         with np.load(data/'render_inputs.npz') as z:
             mesh,weight,k,view = [torch.tensor(z[key],dtype=torch.float32) for key in ('mesh','blend_weight','K','w2v')]
             cam = Camera(K=k[None],w2c=view[None],width=int(z['width']),height=int(z['height'])).to('cuda')
@@ -86,15 +88,17 @@ def score(run,method):
                 img = result.color[0].permute(1,2,0).clamp(0,1).mul(255).round().byte().cpu().numpy()
                 Image.fromarray(img).save(out/label)
     write_csv(out/'frames.csv',rows)
-    write_csv(out/'virtual.csv',virtual)
+    if virtual:
+        write_csv(out/'virtual.csv',virtual)
     groups = {}
-    for group in ('negative','positive','side','front'):
+    for group in (('negative','positive','side') if wide else ('negative','positive','side','front')):
         subset = [r for r in rows if r['group']==group or (group=='side' and r['group']!='front')]
         if not subset:
             raise ValueError(f'Missing {group} rows')
         groups[group] = dict(n=len(subset),**{m:float(np.mean([r[m] for r in subset])) for m in ('psnr','lpips')})
-    receipt = dict(method=method,weights=sha(ply),frames_sha256=sha(run/'frames.csv'),groups=groups,
-                   virtual={m:float(np.mean([r[m] for r in virtual])) for m in ('hole','spill')})
+    receipt = dict(method=method,weights=sha(ply),frames_sha256=sha(evaluation/'frames.csv'),groups=groups)
+    if virtual:
+        receipt['virtual'] = {m:float(np.mean([r[m] for r in virtual])) for m in ('hole','spill')}
     (out/'summary.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(json.dumps(receipt),flush=True)
 
@@ -102,6 +106,8 @@ def score(run,method):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('run',type=Path)
-    p.add_argument('method')
+    p.add_argument('method',nargs='+')
+    p.add_argument('--wide',action='store_true',help='Evaluate the frozen checkpoint on unused real views >= 30 degrees.')
     args = p.parse_args()
-    score(args.run.resolve(),args.method)
+    for method in args.method:
+        score(args.run.resolve(),method,args.wide)
