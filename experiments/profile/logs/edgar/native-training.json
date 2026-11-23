@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "edgar",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 15.275837669963948,
+  "best_psnr": 110.84644769096292,
+  "best_iteration": 249,
+  "best_seconds": 14.5,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 15.3
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 16.0
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 22.12701988220215,
+      "ssim": 0.859196694374366,
+      "lpips": 0.08480813819915056,
+      "score": 110.84644769096292,
+      "hole_mean": 0.00427,
+      "hole_p90": 0.01175,
+      "deficit_mean": 0.00651,
+      "deficit_p90": 0.01276,
+      "opaque_outside_flame": 0.05599127267996534,
+      "outside_mean": 0.05599127267996534,
+      "robust": 22.08431988220215
+    }
+  ],
+  "stopped_early": false
+}
