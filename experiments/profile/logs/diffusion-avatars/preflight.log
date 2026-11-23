@@ -1,0 +1,9 @@
+python experiments/profile/probe.py diffusion-avatars <author-repo> <prepared-subject>
+method diffusion-avatars upstream https://github.com/tobias-kirschstein/diffusion-avatars.git commit 18888640d06d7cac6bb808cfb8323627061161f0
+subject mesh (224, 468, 3) drive (224, 129) cameras (4, 4)
+published subject checkpoints ['18', '37', '55', '124', '145', '210', '251', '264']
+author input requires matched per-identity rasterized canonical-coordinate, normal and depth sequences and camera calibration
+missing nersemble
+missing rendering_data
+input check: blocked before same-subject inference
+exit 2
