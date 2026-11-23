@@ -1,0 +1,22 @@
+{
+  "method": "matched-native-s1702",
+  "weights": "0e66d50f97b19f98846ce072b52739a2daf8612790cff5e20fbccd99d45e43d2",
+  "frames_sha256": "c10d48bc18686c55a24bcc8cdcb937f48d3e32812cd1073d2b60ba81515a8c36",
+  "groups": {
+    "negative": {
+      "n": 22,
+      "psnr": 14.58040176740351,
+      "lpips": 0.15635117143392563
+    },
+    "positive": {
+      "n": 33,
+      "psnr": 17.169082983194897,
+      "lpips": 0.16106940670446915
+    },
+    "side": {
+      "n": 55,
+      "psnr": 16.13361049687834,
+      "lpips": 0.15918211259625176
+    }
+  }
+}
