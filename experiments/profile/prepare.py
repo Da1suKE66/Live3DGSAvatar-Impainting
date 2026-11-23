@@ -78,7 +78,10 @@ def encode(drive, rig):
     return mesh.astype('f4'),weight
 
 
-def main(capture, assets, run):
+def main(capture, assets, run, syncfix):
+    run.mkdir(parents=True,exist_ok=True)
+    if (run/"rig.npz").exists() or (run/"local.yaml").exists():
+        raise FileExistsError(f"Use a fresh run directory: {run}")
     train, drives, cam = select(capture,'train')
     rig = fit(capture,assets,train,drives,cam)
     np.savez(run/'rig.npz',**rig)
@@ -110,6 +113,10 @@ def main(capture, assets, run):
     topo = capture/'topology.npz'
     cfg = {'paths':dict(data_root=str(run/'datasets'),output_dir=str(run/'output'),
                         models_dir=str(run/'models'),mesh_topology=str(topo))}
+    nval = sum(r['split']=='validation' for r in records)
+    cfg['train'] = {'pipeline': {'test_ratio': nval/(len(train)+nval)}}
+    if syncfix:
+        cfg['syncfix'] = syncfix
     print(yaml.safe_dump(cfg))
     (run/'local.yaml').write_text(yaml.safe_dump(cfg))
 
@@ -118,5 +125,11 @@ if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     for arg in ('capture','assets','run'):
         p.add_argument('--'+arg,type=Path,required=True)
+    for arg in ('repo','python','model'):
+        p.add_argument('--syncfix-'+arg,type=Path)
     args = p.parse_args()
-    main(*(getattr(args,k).resolve() for k in ('capture','assets','run')))
+    values = {k:getattr(args,'syncfix_'+k) for k in ('repo','python','model')}
+    if any(values.values()) and not all(values.values()):
+        p.error('Supply all three SyncFix paths together')
+    syncfix = {k:str(v.absolute()) for k,v in values.items() if v}
+    main(args.capture.resolve(),args.assets.resolve(),args.run.resolve(),syncfix)
