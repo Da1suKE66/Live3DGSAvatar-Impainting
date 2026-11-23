@@ -1,0 +1,22 @@
+{
+  "method": "matched-edgar-s1703",
+  "weights": "2bfbe843e93836cf2a5e3e5a6b4d5f8988ca83f5f2b7ff71440c645e82bd7bff",
+  "frames_sha256": "c10d48bc18686c55a24bcc8cdcb937f48d3e32812cd1073d2b60ba81515a8c36",
+  "groups": {
+    "negative": {
+      "n": 22,
+      "psnr": 15.911028666065528,
+      "lpips": 0.15759585188193756
+    },
+    "positive": {
+      "n": 33,
+      "psnr": 17.14071456714853,
+      "lpips": 0.16524095020510934
+    },
+    "side": {
+      "n": 55,
+      "psnr": 16.648840206715327,
+      "lpips": 0.1621829108758406
+    }
+  }
+}

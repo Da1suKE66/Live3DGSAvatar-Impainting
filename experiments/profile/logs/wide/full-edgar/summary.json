@@ -1,0 +1,22 @@
+{
+  "method": "full-edgar",
+  "weights": "607890cc46280dd8dd25aba0edcbc50e7aa59e8131fd7da30157477d51be09e5",
+  "frames_sha256": "c10d48bc18686c55a24bcc8cdcb937f48d3e32812cd1073d2b60ba81515a8c36",
+  "groups": {
+    "negative": {
+      "n": 22,
+      "psnr": 14.787379879759653,
+      "lpips": 0.15909324925054202
+    },
+    "positive": {
+      "n": 33,
+      "psnr": 18.297762135644323,
+      "lpips": 0.17055686405210785
+    },
+    "side": {
+      "n": 55,
+      "psnr": 16.893609233290455,
+      "lpips": 0.16597141813148153
+    }
+  }
+}
