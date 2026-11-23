@@ -1,0 +1,277 @@
+{
+  "baseline": "5cfbdef3fde47614c636a95308afa72d034e5fcc",
+  "seed": 1701,
+  "hardware": "RTX 4090 24 GiB",
+  "sources": {
+    "eg3d": {
+      "url": "https://github.com/NVlabs/eg3d.git",
+      "commit": "7cf1fd1e99e1061e8b6ba850f91c94fe56e7afe4"
+    },
+    "morphablediffusion": {
+      "url": "https://github.com/xiyichen/morphablediffusion.git",
+      "commit": "cf10aa8381da2923b70ed24f0bfbf4847117afe2"
+    },
+    "diffusion-avatars": {
+      "url": "https://github.com/tobias-kirschstein/diffusion-avatars.git",
+      "commit": "18888640d06d7cac6bb808cfb8323627061161f0"
+    },
+    "GAF": {
+      "url": "https://github.com/tangjiapeng/GAF.git",
+      "commit": "496b4f68925e2c74682e2d540fbfb9cdadde8ffc"
+    },
+    "FateAvatar": {
+      "url": "https://github.com/zjwfufu/FateAvatar.git",
+      "commit": "30a14311a15b7b018803c827c4e8dbd55d4bb4ee"
+    },
+    "cap4d": {
+      "url": "https://github.com/felixtaubner/cap4d.git",
+      "commit": "1f25e99702ab5c0b38aa5e195fdd6cd963fa528c"
+    },
+    "SyncFix": {
+      "url": "https://github.com/Deming77/SyncFix.git",
+      "commit": "1ed1efeb6f2485f8ce107f4989f00a4562ecc614"
+    },
+    "Difix3D": {
+      "url": "https://github.com/nv-tlabs/Difix3D.git",
+      "commit": "c76edc595586e16732c91ddee82f3a6d83a8a9cc"
+    },
+    "ELITE": {
+      "url": "https://github.com/kaist-ami/ELITE.git",
+      "commit": "58a7a71dc3e922f589f87882de46154594da0bc3"
+    },
+    "edgar-code": {
+      "url": "https://github.com/kwanyun/edgar-code.git",
+      "commit": "7954c5b9a144828d266e39c2d576b7f4ca2a2547"
+    },
+    "profile-CLIP": {
+      "url": "https://github.com/openai/CLIP.git",
+      "commit": "d05afc436d78f1c48dc0dbf8e5980a9d471f35f6"
+    }
+  },
+  "environment": {
+    "base": {
+      "torch": "2.9.1+cu128",
+      "torchvision": "0.24.1+cu128",
+      "numpy": "2.4.6",
+      "mediapipe": "0.10.32",
+      "nvdiffrast": "0.4.0",
+      "diff-gaussian-rasterization": "0.0.0",
+      "lpips": "0.1.4",
+      "scipy": "1.17.1",
+      "Pillow": "11.3.0",
+      "fused-ssim": "1.0.0"
+    },
+    "syncfix-site": {
+      "torchmetrics": "1.8.2",
+      "llvmlite": "0.47.0",
+      "numba": "0.65.0",
+      "ImageIO": "2.37.2",
+      "lightning-utilities": "0.15.2",
+      "diffusers": "0.32.2"
+    },
+    "profile-legacy": {
+      "transformers": "4.38.0",
+      "accelerate": "1.9.0",
+      "diffusers": "0.25.1",
+      "peft": "0.9.0",
+      "tokenizers": "0.15.2",
+      "huggingface-hub": "0.25.1"
+    },
+    "profile-md": {
+      "pytorch-lightning": "1.9.0",
+      "pccm": "0.4.16",
+      "torchmetrics": "0.11.4",
+      "cumm-cu120": "0.6.3",
+      "ccimport": "0.4.4",
+      "spconv-cu120": "2.3.6",
+      "kornia": "0.7.4",
+      "wcwidth": "0.9.5",
+      "tifffile": "2026.3.3",
+      "portalocker": "4.4.2",
+      "ftfy": "6.3.1",
+      "lazy-loader": "0.6",
+      "lark": "1.3.1",
+      "clip": "1.0",
+      "iopath": "0.1.10",
+      "lightning-utilities": "0.15.3",
+      "scikit-image": "0.25.2",
+      "kornia_rs": "0.2.0",
+      "taming-transformers-rom1504": "0.0.6",
+      "pybind11": "3.1.0"
+    },
+    "profile-fate": {
+      "facexlib": "0.3.0",
+      "addict": "2.4.0",
+      "gfpgan": "1.3.8",
+      "yapf": "0.43.0",
+      "basicsr": "1.4.2",
+      "lmdb": "3.0.0"
+    }
+  },
+  "assets": {
+    "models/face_landmarker.task": {
+      "bytes": 3758596,
+      "sha256": "64184e229b263107bc2b804c6625db1341ff2bb731874b0bcc2fe6544e0bc9ff"
+    },
+    "models/syncfix-official/model.safetensors": {
+      "bytes": 5020040582,
+      "sha256": "fb615820d40bc5675b06da492dfe02f86320f18b2d435258bbf60c290d6c0f30"
+    },
+    "mesh/canonical_face_model.obj": {
+      "bytes": 45999,
+      "sha256": "8bac80443397e113f41a8b565ea72c59390bc031d9defab289dba7bc0c54e618"
+    },
+    "models/profile/2d_prior.pth": {
+      "bytes": 5202527285,
+      "sha256": "788199b80546bc45672125d7b093afc1f57eed82d4fed1393bd29f95a7d517c4"
+    },
+    "models/profile/edgar_exp6.pt": {
+      "bytes": 2247645095,
+      "sha256": "9b7dc08c24190e7cb78cfebbc6d8e20787dda214ac444da9029ae90fe80ad712"
+    },
+    "models/profile/eg3d.pkl": {
+      "bytes": 377644956,
+      "sha256": "7f418947f38202a3c4c9de6e18d0617b380dd5e42c21ba78efe8cc235fde44a7"
+    },
+    "models/profile/GFPGANv1.3.pth": {
+      "bytes": 348632874,
+      "sha256": "c953a88f2727c85c3d9ae72e2bd4846bbaf59fe6972ad94130e23e7017524a70"
+    },
+    "models/profile/morphable.ckpt": {
+      "bytes": 932768134,
+      "sha256": "b8cca3fd41ae0c99ba7e8951adf17d267cdb84cd88be6f7c2e0eca1737a03836"
+    },
+    "models/profile/morphable-second.ckpt": {
+      "bytes": 12947465325,
+      "sha256": "8e081818c22ff8c887bc95eb44af2ced80bf4dfb4689680fb9721e74d6947e88"
+    },
+    "models/profile/difix_ref/model_index.json": {
+      "bytes": 598,
+      "sha256": "06c73e4d1c483e1c81fd0b2f8a89f021f5b31f244c217ff7d62d28f6d37cc1e1"
+    },
+    "models/profile/difix_ref/scheduler/scheduler_config.json": {
+      "bytes": 700,
+      "sha256": "78e1c4d74df2c94c7d886f0d3f9ccff9c88851dda9c6ae4ccab3356a18efa855"
+    },
+    "models/profile/difix_ref/text_encoder/config.json": {
+      "bytes": 607,
+      "sha256": "dcd891d1479e4e083780455e8b7dddedc230515abe098e7df2ef34f31be99b29"
+    },
+    "models/profile/difix_ref/text_encoder/model.safetensors": {
+      "bytes": 1361596304,
+      "sha256": "67e013543d4fac905c882e2993d86a2d454ee69dc9e8f37c0c23d33a48959d15"
+    },
+    "models/profile/difix_ref/tokenizer/special_tokens_map.json": {
+      "bytes": 574,
+      "sha256": "c2d0fb8b86ad86b1f46134d4a5f93fd1e688c932a78efc8d149087c33a53ad06"
+    },
+    "models/profile/difix_ref/tokenizer/tokenizer_config.json": {
+      "bytes": 885,
+      "sha256": "b91e0a1eba063043b4ee76bec870f2fa0c12a3ff404155b30e64c77d25c0758f"
+    },
+    "models/profile/difix_ref/tokenizer/vocab.json": {
+      "bytes": 1059962,
+      "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349"
+    },
+    "models/profile/difix_ref/unet/config.json": {
+      "bytes": 1856,
+      "sha256": "7d12877cd698d80a4f028c75f5b6e81dd73c984054610a4e5e501ffaecfe1fe9"
+    },
+    "models/profile/difix_ref/unet/diffusion_pytorch_model.safetensors": {
+      "bytes": 3463726504,
+      "sha256": "cf723d40f29c6915b6ac2aac3c1dab4fe685afe35a41e725ad63a34124c0ec46"
+    },
+    "models/profile/difix_ref/unet/unet_2d_condition.py": {
+      "bytes": 69247,
+      "sha256": "d2acb23ac4d0bd164311b6622006c7184cf5e3469086cb255cfa8b32e6a184b5"
+    },
+    "models/profile/difix_ref/vae/autoencoder_kl.py": {
+      "bytes": 24456,
+      "sha256": "a0c16e2fe489d0386b04274b25e6cec212f37264283f8ce1c042270d27250edf"
+    },
+    "models/profile/difix_ref/vae/config.json": {
+      "bytes": 702,
+      "sha256": "a4c243c684069c913f79da23d23c9cd8ac98f4cb957b899b2603e2adbfbebc19"
+    },
+    "models/profile/difix_ref/vae/diffusion_pytorch_model.safetensors": {
+      "bytes": 338717612,
+      "sha256": "d3aa93824c839302d1103d72b0ea933df65206945b0e93140328562fffa6cf65"
+    },
+    "models/profile/sd-turbo/model_index.json": {
+      "bytes": 616,
+      "sha256": "679fe7c2a03a419a046f4330bb2e32570d96e7a6da51b7df147d4a87bc7f775c"
+    },
+    "models/profile/sd-turbo/scheduler/scheduler_config.json": {
+      "bytes": 553,
+      "sha256": "5599066c725fc2747a201fa3165ad7c8c3de3be629ce325451752e8f94c0d1ae"
+    },
+    "models/profile/sd-turbo/text_encoder/config.json": {
+      "bytes": 618,
+      "sha256": "9f6935d3d41bf8ce49b1d7ed912b29e770649d1aa3f3972215284f9397cd97d2"
+    },
+    "models/profile/sd-turbo/text_encoder/model.safetensors": {
+      "bytes": 1361596304,
+      "sha256": "67e013543d4fac905c882e2993d86a2d454ee69dc9e8f37c0c23d33a48959d15"
+    },
+    "models/profile/sd-turbo/tokenizer/special_tokens_map.json": {
+      "bytes": 574,
+      "sha256": "c2d0fb8b86ad86b1f46134d4a5f93fd1e688c932a78efc8d149087c33a53ad06"
+    },
+    "models/profile/sd-turbo/tokenizer/tokenizer_config.json": {
+      "bytes": 855,
+      "sha256": "516314ccab66918d7cb647480ac27abd3520d14e1e5825aac99f50c851c16071"
+    },
+    "models/profile/sd-turbo/tokenizer/vocab.json": {
+      "bytes": 1059962,
+      "sha256": "e089ad92ba36837a0d31433e555c8f45fe601ab5c221d4f607ded32d9f7a4349"
+    },
+    "models/profile/sd-turbo/unet/config.json": {
+      "bytes": 1867,
+      "sha256": "ca09d494527ebe13343006e22b4468d45bf12aa34e76cf03639b6dbba1fb5c6d"
+    },
+    "models/profile/sd-turbo/unet/diffusion_pytorch_model.safetensors": {
+      "bytes": 3463726504,
+      "sha256": "438da6db739c8651ec4152341b8133d6896db452ea27afdb6b9b0344f0c40532"
+    },
+    "models/profile/sd-turbo/vae/config.json": {
+      "bytes": 655,
+      "sha256": "699a58ef7ecf3bffa201a507a3eaa3eed7efabab457ac547bf82df798b52a9be"
+    },
+    "models/profile/sd-turbo/vae/diffusion_pytorch_model.safetensors": {
+      "bytes": 334643268,
+      "sha256": "2aa1f43011b553a4cba7f37456465cdbd48aab7b54b9348b890e8058ea7683ec"
+    },
+    "models/profile/sapiens-pretrain-0.3b-torchscript/sapiens_0.3b_epoch_1600_torchscript.pt2": {
+      "bytes": 1343168520,
+      "sha256": "96c6b78fd21c5854225615a1927eb9fa40149154b3df9c9d7523bbae954a8b6c"
+    }
+  },
+  "hf_revisions": {
+    "nvidia/difix_ref": "d4830559772a5795c9d136302c5b197d6418d3fb",
+    "stabilityai/sd-turbo": "b261bac6fd2cf515557d5d0707481eafa0485ec2",
+    "facebook/sapiens-pretrain-0.3b-torchscript": "41f19116d3200448dad6bd10f4b0f18e7602de05"
+  },
+  "capture_sha256": "46a8824b66b77443a51229983251f7a011f1defb1a2426281a793bdf321ca1ac",
+  "inputs": {
+    "rig.npz": {
+      "bytes": 596456,
+      "sha256": "3366c2d3b33b864a6583ab947fd5d413059c2bf736a04844eb95a92c9efcd720"
+    },
+    "frames.csv": {
+      "bytes": 17056,
+      "sha256": "2019fbf1388cd29c08b2d87be262c0b467e1e79e880f6d430e48e7fcd602fec0"
+    },
+    "datasets/subject/render_inputs.npz": {
+      "bytes": 1379882,
+      "sha256": "f4f4e3f9acebd8c05567f18af6da246724574aa0ba17816e7c8a667b00798e62"
+    },
+    "datasets/heldout/render_inputs.npz": {
+      "bytes": 537058,
+      "sha256": "42e1d465c4fa6ab219b737c11e2df2de567fd0fcba79f3bd7036b135e0c4be56"
+    }
+  },
+  "topology": {
+    "bytes": 26046,
+    "sha256": "ba914ce52593f3bd8c0123faf3e58436f329e3f761991d8aeb004521b31bf840"
+  }
+}

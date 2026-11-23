@@ -1,0 +1,114 @@
+{
+  "upstream": "5cfbdef3fde47614c636a95308afa72d034e5fcc",
+  "seed_3d": 1701,
+  "matched_initial_ply_sha256": "12ab047b5222c2ef52d90302c1bac47adb9b7069dbd435d714bed9a6ed5d45b2",
+  "initial_vertex_count": 42566,
+  "independent_initializations": {
+    "real": {
+      "sha256": "87654ef8c8a348af59bbe6337f093cdafbf945bc3879221b1adf7c100467ca4d",
+      "changed_vertex_fields": [
+        "weight_module"
+      ]
+    },
+    "elite": {
+      "sha256": "86848aab6ee670eee6c98b71934c2578c569f9c93f1416f807135447fd70c1f9",
+      "changed_vertex_fields": [
+        "weight_module"
+      ]
+    },
+    "edgar": {
+      "sha256": "5e0d5b3fa9341ce6c063a7536af061235a9a7a6a02a41817246163f83db3c665",
+      "changed_vertex_fields": [
+        "weight_module"
+      ]
+    },
+    "blend": {
+      "sha256": "e5256ad6e43fac057d9ad6cb1d83db6ce717a0274b81b60f0c2c7a9be4ca0dd8",
+      "changed_vertex_fields": [
+        "weight_module"
+      ]
+    }
+  },
+  "split_counts": {
+    "train": 192,
+    "validation": 32,
+    "test": 87
+  },
+  "fresh_prepare_identical_frame_list_sha256": "2019fbf1388cd29c08b2d87be262c0b467e1e79e880f6d430e48e7fcd602fec0",
+  "fresh_prepare_max_abs_mesh_delta": {
+    "subject": 0.0,
+    "heldout": 0.0
+  },
+  "training_indices_used_for_reference": {
+    "short": [
+      0,
+      44,
+      191
+    ],
+    "full": [
+      0,
+      44,
+      191
+    ]
+  },
+  "full_replacement_camera_yaws_degrees": [
+    -15,
+    -10,
+    -5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90
+  ],
+  "full_replacement_alpha_equal_on_all_20_cameras": [
+    "full-elite",
+    "full-edgar",
+    "full-blend"
+  ],
+  "verified_checkpoint_hashes_and_matching_metrics": [
+    "base",
+    "real",
+    "raw",
+    "native-syncfix",
+    "syncfix",
+    "difix",
+    "edgar",
+    "elite",
+    "eg3d",
+    "fate-prior",
+    "morphable",
+    "full-base",
+    "full-real",
+    "full-native",
+    "full-elite",
+    "full-edgar",
+    "full-blend",
+    "matched-real",
+    "matched-elite",
+    "matched-edgar",
+    "matched-blend"
+  ],
+  "render_pngs_each_model": {
+    "observed": 87,
+    "virtual": 6
+  },
+  "upstream_test_runner": {
+    "passed": 348,
+    "failed": 0,
+    "skipped": 19,
+    "setup": "Clean checkout, isolated Python environment with project src on site path, GPU and local sockets available."
+  }
+}
