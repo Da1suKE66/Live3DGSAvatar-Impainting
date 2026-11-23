@@ -1,0 +1,32 @@
+You are offline and the cache for model files in Transformers v4.22.0 has been updated while your local cache seems to be the one of a previous version. It is very likely that all your calls to any `from_pretrained()` method will fail. Remove the offline mode and enable internet connection to have your cache be updated automatically, then you can go back to offline mode.
+
+0it [00:00, ?it/s]
+0it [00:00, ?it/s]
+$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+$WORKSPACE/.deps/profile-legacy/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+$WORKSPACE/.deps/profile-legacy/huggingface_hub/file_download.py:1142: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+mv_unet is used
+==================================================
+Number of trainable parameters in UNet: 865.91M
+Number of trainable parameters in VAE: 0.52M
+==================================================
+
+Running inference:   0%|          | 0/6 [00:00<?, ?it/s]
+Running inference:  17%|█▋        | 1/6 [00:00<00:02,  1.91it/s]
+Running inference:  33%|███▎      | 2/6 [00:00<00:01,  2.42it/s]
+Running inference:  50%|█████     | 3/6 [00:01<00:01,  2.65it/s]
+Running inference:  67%|██████▋   | 4/6 [00:01<00:00,  2.78it/s]
+Running inference:  83%|████████▎ | 5/6 [00:01<00:00,  2.84it/s]
+Running inference: 100%|██████████| 6/6 [00:02<00:00,  2.89it/s]
+Running inference: 100%|██████████| 6/6 [00:02<00:00,  2.73it/s]
+yaw+20_pitch+0_roll+0_frame00044.png
+yaw+35_pitch+0_roll+0_frame00044.png
+yaw+50_pitch+0_roll+0_frame00044.png
+yaw-20_pitch+0_roll+0_frame00044.png
+yaw-35_pitch+0_roll+0_frame00044.png
+yaw-50_pitch+0_roll+0_frame00044.png

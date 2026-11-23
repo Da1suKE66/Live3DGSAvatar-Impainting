@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "elite",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 20.72308232099749,
+  "best_psnr": 111.01568773241726,
+  "best_iteration": 249,
+  "best_seconds": 19.9,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 20.7
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 21.5
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 22.222442626953125,
+      "ssim": 0.8615417412187928,
+      "lpips": 0.08567683910951018,
+      "score": 111.01568773241726,
+      "hole_mean": 0.00446,
+      "hole_p90": 0.01181,
+      "deficit_mean": 0.00622,
+      "deficit_p90": 0.01269,
+      "opaque_outside_flame": 0.05577205359400422,
+      "outside_mean": 0.05577205359400422,
+      "robust": 22.177842626953126
+    }
+  ],
+  "stopped_early": false
+}
