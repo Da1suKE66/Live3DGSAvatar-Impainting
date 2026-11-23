@@ -1,0 +1,110 @@
+12ab047b5222c2ef52d90302c1bac47adb9b7069dbd435d714bed9a6ed5d45b2  $WORKSPACE/runs/profile-v1/full-repo/tmp/subject_avatar_unified.ply
+==============================================================
+单阶段头像重建：subject / matched-native-s1702
+  训练 : 10000 步  batch 8  repair 2  ssim 0.1  lpips 0  退火 ratio
+  结构 : tex 512  xyz_lr 0.0002（盘状初始化配套）  加密 关
+  产物 : models/subject/matched-native-s1702
+==============================================================
+[avatar] 初始化：UV 绑定高斯（未训练）
+
+$ conda run -n live3dgs --no-capture-output python scripts/init_uv.py --subject subject --out-dir tmp/subject_matched-native-s1702_init
+[init-uv] tmp/subject_matched-native-s1702_init/model.ply  高斯 42566  （tex 256，未训练）
+
+$ conda run -n live3dgs --no-capture-output python - tmp/subject_matched-native-s1702_init tmp/subject_matched-native-s1702_unified.yaml 512
+结构配置：tmp/subject_matched-native-s1702_init/config.yaml -> tmp/subject_matched-native-s1702_unified.yaml（tex 512）
+
+$ conda run -n live3dgs --no-capture-output python scripts/merge_layers.py --hard tmp/subject_matched-native-s1702_init/model.ply --out tmp/subject_matched-native-s1702_unified.ply --tex-size 512
+扩容 42566 个高斯 -> tmp/subject_matched-native-s1702_unified.ply（tex 256 -> 512）
+
+$ conda run -n live3dgs --no-capture-output python scripts/train.py --subject subject --work-name matched-native-s1702 --stage base --init-ply tmp/subject_matched-native-s1702_unified.ply --model-config tmp/subject_matched-native-s1702_unified.yaml --repair-dir datasets/subject/repair/repairs --repair-per-batch 2 --batch-size 8 --iterations 10000 --blend-start 0 --hard-xyz-lr 0.0002 --patience 4 --ssim-weight 0.1 --lpips-weight 0 --lpips-from 5000 --repair-schedule ratio --repair-final-weight 0.2 --seed 1702 --init-ply $WORKSPACE/runs/profile-v1/full-repo/tmp/subject_avatar_unified.ply
+训练 subject/matched-native-s1702
+  数据   : $WORKSPACE/runs/profile-v1/full-repo/datasets/subject
+  阶段   : base
+  训练集 : 192 帧    验证集 : 32 帧（末尾 14%）
+  结构   : tmp/subject_matched-native-s1702_unified.yaml
+           tex 512  D 129  K 20
+  步数   : 10000   batch 8   blend_start 0
+  早停   : 每 500 步验证，连续 4 次 < 0.05 dB；第 1000 步后生效
+  初始化 : $WORKSPACE/runs/profile-v1/full-repo/tmp/subject_avatar_unified.ply（warm start）
+  提示   : pose 驱动不可用（缺少 FLAME 模型：data/FLAME2020/generic_model.pkl），退回相机绕转
+  高斯数 : 42566   基 K=20
+  初始化混合: 20 张修复图，batch 修复:真实=2:6
+  验证   : 相机绕转 ±20, ±30, ±40°（24 帧，λ=10）
+  硬位移 : xyz lr 0.0002（轻度）
+  损失   : L1（背景权重 1.00） + nv_spill 0.05 + 修复图退火 ratio（末权重 0.2） + alpha 0.2(对 GT mask) + ssim 0.1
+  感知项 : SSIM 0.1 + LPIPS 0（LPIPS 第 5000 步后启用）
+  新视角 : 每 4 步，yaw [-50, -40, -30, -20, -10, 10, 20, 30, 40, 50]，hole 0 + spill 0.05（margin 12px, alpha 0.05–0.6）
+  取数   : 预取 2 线程（批 8）
+  取数   : 逐帧解 PNG —— 可跑 scripts/cache_images.py 加速
+[train] 100/10000  损失 0.0321（l1 0.0129 ssim 0.1686 nv_spill 0.0030 alpha 0.0107）  17.4 it/s
+[train] 200/10000  损失 0.0244（l1 0.0090 ssim 0.1400 nv_spill 0.0048 alpha 0.0058）  17.5 it/s
+[train] 300/10000  损失 0.0259（l1 0.0103 ssim 0.1402 nv_spill 0.0001 alpha 0.0078）  17.4 it/s
+[train] 400/10000  损失 0.0249（l1 0.0101 ssim 0.1329 nv_spill 0.0018 alpha 0.0073）  17.4 it/s
+[train] 500/10000  损失 0.0262（l1 0.0103 ssim 0.1434 nv_spill 0.0021 alpha 0.0070）  17.3 it/s
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+  [best] 第 499 步 score 110.76（PSNR 22.49，SSIM 0.8542，LPIPS 0.0889） → model_best.ply（累计 32.0s）
+[train] 600/10000  损失 0.0207（l1 0.0075 ssim 0.1207 nv_spill 0.0021 alpha 0.0053）  15.9 it/s
+[train] 700/10000  损失 0.0212（l1 0.0077 ssim 0.1213 nv_spill 0.0032 alpha 0.0058）  16.0 it/s
+[train] 800/10000  损失 0.0192（l1 0.0072 ssim 0.1089 nv_spill 0.0002 alpha 0.0053）  16.2 it/s
+[train] 900/10000  损失 0.0179（l1 0.0070 ssim 0.0971 nv_spill 0.0008 alpha 0.0058）  16.3 it/s
+[train] 1000/10000  损失 0.0182（l1 0.0068 ssim 0.1034 nv_spill 0.0015 alpha 0.0050）  16.3 it/s
+  [best] 第 999 步 score 112.00（PSNR 22.81，SSIM 0.8632，LPIPS 0.0794） → model_best.ply（累计 63.9s）
+[train] 1100/10000  损失 0.0197（l1 0.0076 ssim 0.1096 nv_spill 0.0000 alpha 0.0062）  15.8 it/s
+[train] 1200/10000  损失 0.0212（l1 0.0077 ssim 0.1215 nv_spill 0.0009 alpha 0.0064）  15.9 it/s
+[train] 1300/10000  损失 0.0171（l1 0.0066 ssim 0.0943 nv_spill 0.0000 alpha 0.0054）  16.0 it/s
+[train] 1400/10000  损失 0.0185（l1 0.0077 ssim 0.0975 nv_spill 0.0010 alpha 0.0050）  16.1 it/s
+[train] 1500/10000  损失 0.0206（l1 0.0076 ssim 0.1197 nv_spill 0.0000 alpha 0.0053）  16.2 it/s
+  [best] 第 1499 步 score 112.06（PSNR 22.68，SSIM 0.8621，LPIPS 0.0745） → model_best.ply（累计 95.4s）
+[train] 1600/10000  损失 0.0173（l1 0.0067 ssim 0.0943 nv_spill 0.0002 alpha 0.0058）  15.8 it/s
+[train] 1700/10000  损失 0.0176（l1 0.0064 ssim 0.1018 nv_spill 0.0006 alpha 0.0048）  15.9 it/s
+[train] 1800/10000  损失 0.0159（l1 0.0060 ssim 0.0891 nv_spill 0.0013 alpha 0.0043）  16.0 it/s
+[train] 1900/10000  损失 0.0169（l1 0.0062 ssim 0.0975 nv_spill 0.0004 alpha 0.0047）  16.1 it/s
+[train] 2000/10000  损失 0.0145（l1 0.0054 ssim 0.0849 nv_spill 0.0000 alpha 0.0034）  16.1 it/s
+  [best] 第 1999 步 score 113.69（PSNR 23.76，SSIM 0.8684，LPIPS 0.0698） → model_best.ply（累计 126.8s）
+[train] 2100/10000  损失 0.0180（l1 0.0069 ssim 0.1007 nv_spill 0.0001 alpha 0.0053）  15.9 it/s
+[train] 2200/10000  损失 0.0170（l1 0.0063 ssim 0.0970 nv_spill 0.0001 alpha 0.0050）  15.9 it/s
+[train] 2300/10000  损失 0.0155（l1 0.0061 ssim 0.0838 nv_spill 0.0009 alpha 0.0048）  16.0 it/s
+[train] 2400/10000  损失 0.0167（l1 0.0063 ssim 0.0933 nv_spill 0.0021 alpha 0.0048）  16.0 it/s
+[train] 2500/10000  损失 0.0175（l1 0.0067 ssim 0.0977 nv_spill 0.0007 alpha 0.0053）  16.1 it/s
+[train] 2600/10000  损失 0.0164（l1 0.0063 ssim 0.0911 nv_spill 0.0002 alpha 0.0049）  16.0 it/s
+[train] 2700/10000  损失 0.0138（l1 0.0052 ssim 0.0791 nv_spill 0.0000 alpha 0.0036）  16.0 it/s
+[train] 2800/10000  损失 0.0156（l1 0.0061 ssim 0.0843 nv_spill 0.0021 alpha 0.0045）  16.1 it/s
+[train] 2900/10000  损失 0.0157（l1 0.0058 ssim 0.0902 nv_spill 0.0005 alpha 0.0042）  16.1 it/s
+[train] 3000/10000  损失 0.0141（l1 0.0056 ssim 0.0769 nv_spill 0.0000 alpha 0.0041）  16.2 it/s
+  [best] 第 2999 步 score 114.09（PSNR 24.11，SSIM 0.8663，LPIPS 0.0667） → model_best.ply（累计 188.3s）
+[train] 3100/10000  损失 0.0149（l1 0.0058 ssim 0.0814 nv_spill 0.0010 alpha 0.0046）  16.0 it/s
+[train] 3200/10000  损失 0.0158（l1 0.0061 ssim 0.0877 nv_spill 0.0006 alpha 0.0046）  16.0 it/s
+[train] 3300/10000  损失 0.0154（l1 0.0057 ssim 0.0882 nv_spill 0.0000 alpha 0.0042）  16.1 it/s
+[train] 3400/10000  损失 0.0154（l1 0.0056 ssim 0.0890 nv_spill 0.0006 alpha 0.0039）  16.1 it/s
+[train] 3500/10000  损失 0.0153（l1 0.0059 ssim 0.0861 nv_spill 0.0000 alpha 0.0042）  16.1 it/s
+[train] 3600/10000  损失 0.0143（l1 0.0055 ssim 0.0794 nv_spill 0.0005 alpha 0.0042）  16.1 it/s
+[train] 3700/10000  损失 0.0128（l1 0.0050 ssim 0.0691 nv_spill 0.0004 alpha 0.0042）  16.1 it/s
+[train] 3800/10000  损失 0.0142（l1 0.0055 ssim 0.0769 nv_spill 0.0027 alpha 0.0042）  16.1 it/s
+[train] 3900/10000  损失 0.0128（l1 0.0049 ssim 0.0717 nv_spill 0.0016 alpha 0.0033）  16.2 it/s
+[train] 4000/10000  损失 0.0137（l1 0.0057 ssim 0.0696 nv_spill 0.0013 alpha 0.0051）  16.2 it/s
+[train] 4100/10000  损失 0.0144（l1 0.0057 ssim 0.0796 nv_spill 0.0000 alpha 0.0040）  16.1 it/s
+[train] 4200/10000  损失 0.0128（l1 0.0050 ssim 0.0705 nv_spill 0.0005 alpha 0.0037）  16.2 it/s
+[train] 4300/10000  损失 0.0137（l1 0.0054 ssim 0.0749 nv_spill 0.0010 alpha 0.0039）  16.2 it/s
+[train] 4400/10000  损失 0.0139（l1 0.0055 ssim 0.0755 nv_spill 0.0004 alpha 0.0042）  16.3 it/s
+[train] 4500/10000  损失 0.0125（l1 0.0050 ssim 0.0675 nv_spill 0.0000 alpha 0.0036）  16.3 it/s
+[train] 4600/10000  损失 0.0139（l1 0.0054 ssim 0.0755 nv_spill 0.0039 alpha 0.0039）  16.2 it/s
+[train] 4700/10000  损失 0.0136（l1 0.0054 ssim 0.0737 nv_spill 0.0000 alpha 0.0039）  16.2 it/s
+[train] 4800/10000  损失 0.0124（l1 0.0049 ssim 0.0680 nv_spill 0.0005 alpha 0.0033）  16.3 it/s
+[train] 4900/10000  损失 0.0137（l1 0.0055 ssim 0.0727 nv_spill 0.0006 alpha 0.0043）  16.3 it/s
+[train] 5000/10000  损失 0.0125（l1 0.0051 ssim 0.0670 nv_spill 0.0006 alpha 0.0037）  16.3 it/s
+  [save] 第 4999 步 model_004999.ply（累计 309.1s）
+  [save] 第 5000 步 model_005000.ply（累计 310.0s）
+
+最终模型：$WORKSPACE/runs/profile-v1/full-repo/output/train/subject/matched-native-s1702/model.ply（累计 310.9s）
+
+训练结束：5000 步，309.1 s，16.17 it/s
+  最佳验证 score 114.09（第 2999 步，累计 188.3s）
+  早停   : 连续 4 次验证提升 < 0.05 dB（每 500 步验证）
+  装入来源：model_best.ply
+已装入：$WORKSPACE/runs/profile-v1/full-repo/models/subject/matched-native-s1702
+  评测：bash eval.sh --subject subject --work-name matched-native-s1702
+[avatar] 完成：models/subject/matched-native-s1702
+[avatar] 评测：bash eval.sh --subject subject --work-name matched-native-s1702
