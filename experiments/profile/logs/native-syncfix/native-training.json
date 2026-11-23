@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "native-syncfix",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 18.889660113025457,
+  "best_psnr": 110.3360175155921,
+  "best_iteration": 249,
+  "best_seconds": 18.2,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 18.9
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 19.6
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 21.840438842773438,
+      "ssim": 0.8580766657383705,
+      "lpips": 0.0881650922819972,
+      "score": 110.3360175155921,
+      "hole_mean": 0.0067,
+      "hole_p90": 0.02105,
+      "deficit_mean": 0.00881,
+      "deficit_p90": 0.02238,
+      "opaque_outside_flame": 0.048137722227009495,
+      "outside_mean": 0.048137722227009495,
+      "robust": 21.773438842773437
+    }
+  ],
+  "stopped_early": false
+}
