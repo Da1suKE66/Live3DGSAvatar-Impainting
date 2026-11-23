@@ -97,3 +97,24 @@ done
 ```bash
 "$PYTHON_BIN" experiments/profile/figure.py "$RUN" "$RUN/comparison.jpg"
 ```
+
+## Difix 完整配方与训练种子复测
+
+沿用上文创建的 RUN 和 20 个修复相机。下面的训练会复用原生 SyncFix 的初始 PLY。两个追加种子分别作用于 3D 训练，教师图保持固定。原生组直接使用上游的 `datasets/subject/repair/repairs` 目录。
+
+```bash
+set -e
+expt="$RUN/full-replacement"
+PYTHONPATH="$LEGACY_SITE:$PWD/src" "$PYTHON_BIN" -u experiments/profile/difix.py \
+  "$expt" "$UPSTREAM/Difix3D" "$ASSETS/models/profile/difix_ref" > "$RUN/matched-difix-teacher.log" 2>&1
+"$PYTHON_BIN" experiments/profile/full_labels.py "$RUN" "$expt" difix > "$RUN/matched-difix-labels.log"
+bash experiments/profile/train_full_control.sh difix --shared-init 1701 > "$RUN/matched-difix.log" 2>&1
+PYTHONPATH="$PWD/src" "$PYTHON_BIN" experiments/profile/score.py "$RUN" matched-difix > "$RUN/matched-difix-score.log" 2>&1
+for seed in 1702 1703; do
+  for method in native edgar; do
+    name="matched-$method-s$seed"
+    bash experiments/profile/train_full_control.sh "$method" --shared-init "$seed" > "$RUN/$name.log" 2>&1
+    PYTHONPATH="$PWD/src" "$PYTHON_BIN" experiments/profile/score.py "$RUN" "$name" > "$RUN/$name-score.log" 2>&1
+  done
+done
+```
