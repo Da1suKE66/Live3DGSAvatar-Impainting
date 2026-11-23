@@ -1,0 +1,27 @@
+$WORKSPACE/.venv/bin/python -m edgar.infer --input $WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar-input --reference $WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar-reference.png --checkpoint $WORKSPACE/assets/models/profile/edgar_exp6.pt --sapiens $WORKSPACE/assets/models/profile/sapiens-pretrain-0.3b-torchscript/sapiens_0.3b_epoch_1600_torchscript.pt2 --base-model $WORKSPACE/assets/models/profile/sd-turbo --output $WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar --preprocessing application --seed 1701
+$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+Some weights of UNet2DConditionModel were not initialized from the model checkpoint at $WORKSPACE/assets/models/profile/sd-turbo and are newly initialized: ['up_blocks.3.ref_fuses.2.out_proj.bias', 'up_blocks.3.ref_zero.2.bias', 'up_blocks.2.layernorm.weight', 'up_blocks.3.ref_fuses.0.in_proj_bias', 'down_blocks.0.ref_fuses.0.out_proj.weight', 'down_blocks.0.ref_zero.0.weight', 'down_blocks.0.ref_zero.1.bias', 'down_blocks.0.ref_fuses.0.in_proj_weight', 'down_blocks.0.layernorm.bias', 'up_blocks.3.ref_fuses.1.in_proj_bias', 'up_blocks.3.ref_zero.0.weight', 'up_blocks.3.ref_zero.0.bias', 'up_blocks.3.ref_fuses.0.in_proj_weight', 'up_blocks.3.ref_fuses.1.out_proj.bias', 'up_blocks.3.ref_zero.2.weight', 'up_blocks.1.layernorm.bias', 'down_blocks.1.layernorm.weight', 'up_blocks.3.ref_fuses.2.out_proj.weight', 'down_blocks.0.ref_fuses.0.out_proj.bias', 'up_blocks.2.layernorm.bias', 'up_blocks.3.ref_fuses.2.in_proj_bias', 'up_blocks.3.ref_zero.1.bias', 'up_blocks.3.ref_fuses.2.in_proj_weight', 'up_blocks.1.layernorm.weight', 'down_blocks.0.ref_fuses.0.in_proj_bias', 'down_blocks.1.layernorm.bias', 'down_blocks.0.layernorm.weight', 'up_blocks.3.ref_fuses.0.out_proj.bias', 'up_blocks.3.ref_fuses.0.out_proj.weight', 'up_blocks.3.ref_fuses.1.in_proj_weight', 'down_blocks.0.ref_fuses.1.in_proj_bias', 'down_blocks.2.layernorm.weight', 'up_blocks.3.ref_zero.1.weight', 'down_blocks.0.ref_fuses.1.in_proj_weight', 'up_blocks.3.layernorm.bias', 'down_blocks.0.ref_fuses.1.out_proj.bias', 'up_blocks.3.layernorm.weight', 'down_blocks.0.ref_fuses.1.out_proj.weight', 'up_blocks.3.ref_fuses.1.out_proj.weight', 'down_blocks.2.layernorm.bias', 'down_blocks.0.ref_zero.1.weight', 'down_blocks.0.ref_zero.0.bias']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+10_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+15_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+20_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+25_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+30_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+35_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+40_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+45_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+50_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+55_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+60_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+65_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+70_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+75_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+80_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+85_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw+90_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw-10_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw-15_pitch+0_roll+0_frame00044.png.png
+$WORKSPACE/runs/profile-v1/full-replacement/teachers/edgar/yaw-5_pitch+0_roll+0_frame00044.png.png

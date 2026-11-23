@@ -1,0 +1,7 @@
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+{"method": "full-edgar", "weights": "607890cc46280dd8dd25aba0edcbc50e7aa59e8131fd7da30157477d51be09e5", "frames_sha256": "2019fbf1388cd29c08b2d87be262c0b467e1e79e880f6d430e48e7fcd602fec0", "groups": {"negative": {"n": 26, "psnr": 21.75208259118056, "lpips": 0.134643627760502}, "positive": {"n": 23, "psnr": 22.492472623447398, "lpips": 0.1582100106322247}, "side": {"n": 49, "psnr": 22.099612606326215, "lpips": 0.14570539931253512}, "front": {"n": 38, "psnr": 24.182009537785618, "lpips": 0.07621639986571513}}, "virtual": {"hole": 0.028515033769978496, "spill": 0.060856751042587}}
