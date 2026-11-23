@@ -1,0 +1,8 @@
+python experiments/profile/probe.py gaf <author-repo> <prepared-subject>
+method gaf upstream https://github.com/tangjiapeng/GAF.git commit 496b4f68925e2c74682e2d540fbfb9cdadde8ffc
+subject mesh (224, 468, 3) drive (224, 129) cameras (4, 4)
+tracked files ["README.md", "media/teaser.png"]
+inference/training/weights candidates []
+release note ['## Source Code Coming Soon!']
+input check: blocked before same-subject inference
+exit 2
