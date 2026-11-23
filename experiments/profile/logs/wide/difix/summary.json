@@ -1,0 +1,22 @@
+{
+  "method": "difix",
+  "weights": "17d4c37ab686fc4a58acbeab8083adeb6bfce5fc750114ad3e47e57e1188e438",
+  "frames_sha256": "c10d48bc18686c55a24bcc8cdcb937f48d3e32812cd1073d2b60ba81515a8c36",
+  "groups": {
+    "negative": {
+      "n": 22,
+      "psnr": 16.49505027532747,
+      "lpips": 0.16434754905375568
+    },
+    "positive": {
+      "n": 33,
+      "psnr": 17.898448993246063,
+      "lpips": 0.17041546332113672
+    },
+    "side": {
+      "n": 55,
+      "psnr": 17.337089506078627,
+      "lpips": 0.1679882976141843
+    }
+  }
+}

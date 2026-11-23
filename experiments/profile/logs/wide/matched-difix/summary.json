@@ -1,0 +1,22 @@
+{
+  "method": "matched-difix",
+  "weights": "eb2804d23102c50ef3f0afd05879486a2f4c8e829802b7ecec0a7b9e4309f827",
+  "frames_sha256": "c10d48bc18686c55a24bcc8cdcb937f48d3e32812cd1073d2b60ba81515a8c36",
+  "groups": {
+    "negative": {
+      "n": 22,
+      "psnr": 15.941679777714619,
+      "lpips": 0.15729016878388144
+    },
+    "positive": {
+      "n": 33,
+      "psnr": 17.22585218982719,
+      "lpips": 0.16792283952236176
+    },
+    "side": {
+      "n": 55,
+      "psnr": 16.712183224982162,
+      "lpips": 0.16366977122696963
+    }
+  }
+}
