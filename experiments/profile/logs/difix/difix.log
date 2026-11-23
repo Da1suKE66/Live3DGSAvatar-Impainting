@@ -1,0 +1,37 @@
+$WORKSPACE/.venv/bin/python -u scripts/train.py --subject subject --work-name difix --stage base --model-config configs/model_rgb.yaml --seed 1701 --test-ratio 0.14285714285714285 --blend-start 0 --ssim-weight 0.1 --lpips-weight 0 --prefetch-workers 0 --eval-frames 16 --patience 10 --save-every 250 --min-delta 0.05 --init-ply $WORKSPACE/runs/profile-v1/models/subject/base/model.ply --iterations 250 --eval-every 250 --lr-scale 0.25 --batch-size 8 --repair-per-batch 2 --repair-schedule none --repair-dir $WORKSPACE/runs/profile-v1/labels/difix
+训练 subject/difix
+  数据   : $WORKSPACE/runs/profile-v1/datasets/subject
+  阶段   : base
+  训练集 : 192 帧    验证集 : 32 帧（末尾 14%）
+  结构   : configs/model_rgb.yaml
+           tex 256  D 129  K 20
+  步数   : 250   batch 8   blend_start 0
+  早停   : 每 250 步验证，连续 10 次 < 0.05 dB；第 1000 步后生效
+  初始化 : $WORKSPACE/runs/profile-v1/models/subject/base/model.ply（warm start）
+  提示   : pose 驱动不可用（缺少 FLAME 模型：data/FLAME2020/generic_model.pkl），退回相机绕转
+  高斯数 : 42566   基 K=20
+  初始化混合: 6 张修复图，batch 修复:真实=2:6
+  验证   : 相机绕转 ±20, ±30, ±40°（24 帧，λ=10）
+  lr 缩放 : 0.25
+  损失   : L1（背景权重 1.00） + nv_spill 0.05 + alpha 0.2(对 GT mask) + ssim 0.1
+  感知项 : SSIM 0.1 + LPIPS 0（LPIPS 第 20000 步后启用）
+  新视角 : 每 4 步，yaw [-50, -40, -30, -20, -10, 10, 20, 30, 40, 50]，hole 0 + spill 0.05（margin 12px, alpha 0.05–0.6）
+  取数   : 预取 0 线程（批 8）
+  取数   : 逐帧解 PNG —— 可跑 scripts/cache_images.py 加速
+[train] 100/250  损失 0.0177（l1 0.0066 ssim 0.1015 nv_spill 0.0000 alpha 0.0049）  14.5 it/s
+[train] 200/250  损失 0.0205（l1 0.0076 ssim 0.1182 nv_spill 0.0000 alpha 0.0055）  14.8 it/s
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+  [best] 第 249 步 score 110.95（PSNR 22.23，SSIM 0.8597，LPIPS 0.0852） → model_best.ply（累计 18.7s）
+  [save] 第 249 步 model_000249.ply（累计 19.5s）
+  [save] 第 250 步 model_000250.ply（累计 20.2s）
+
+最终模型：$WORKSPACE/runs/profile-v1/output/train/subject/difix/model.ply（累计 20.9s）
+
+训练结束：250 步，19.5 s，12.85 it/s
+  最佳验证 score 110.95（第 249 步，累计 18.7s）
+  装入来源：model_best.ply
+已装入：$WORKSPACE/runs/profile-v1/models/subject/difix
+  评测：bash eval.sh --subject subject --work-name difix

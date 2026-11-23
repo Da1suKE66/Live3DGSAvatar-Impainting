@@ -1,0 +1,41 @@
+$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+Keyword arguments {'trust_remote_code': True} are not expected by DifixPipeline and will be ignored.
+
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]$WORKSPACE/.deps/profile-legacy/diffusers/utils/outputs.py:63: FutureWarning: `torch.utils._pytree._register_pytree_node` is deprecated. Please use `torch.utils._pytree.register_pytree_node` instead.
+  torch.utils._pytree._register_pytree_node(
+
+Loading pipeline components...:  20%|██        | 1/5 [00:00<00:00,  7.47it/s]
+Loading pipeline components...:  40%|████      | 2/5 [00:01<00:01,  1.53it/s]
+Loading pipeline components...:  60%|██████    | 3/5 [00:01<00:00,  2.29it/s]
+Loading pipeline components...: 100%|██████████| 5/5 [00:01<00:00,  3.55it/s]
+You have disabled the safety checker for <class 'pipeline_difix.DifixPipeline'> by passing `safety_checker=None`. Ensure that you abide to the conditions of the Stable Diffusion license and do not expose unfiltered results in services or applications open to the public. Both the diffusers team and Hugging Face strongly recommend to keep the safety filter enabled in all public facing circumstances, disabling it only for use-cases that involve analyzing network behavior or auditing its results. For more information, please have a look at https://github.com/huggingface/diffusers/pull/254 .
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00, 12.00it/s]
+yaw+20_pitch+0_roll+0_frame00044.png
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.91it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.90it/s]
+yaw+35_pitch+0_roll+0_frame00044.png
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.93it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.92it/s]
+yaw+50_pitch+0_roll+0_frame00044.png
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.77it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.76it/s]
+yaw-20_pitch+0_roll+0_frame00044.png
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.90it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.89it/s]
+yaw-35_pitch+0_roll+0_frame00044.png
+
+  0%|          | 0/1 [00:00<?, ?it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.84it/s]
+100%|██████████| 1/1 [00:00<00:00,  7.83it/s]
+yaw-50_pitch+0_roll+0_frame00044.png

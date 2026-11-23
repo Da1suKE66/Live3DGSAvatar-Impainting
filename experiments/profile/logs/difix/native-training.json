@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "difix",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 19.4524486430455,
+  "best_psnr": 110.95434627604776,
+  "best_iteration": 249,
+  "best_seconds": 18.7,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 19.5
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 20.2
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 22.228150367736816,
+      "ssim": 0.8597081984611439,
+      "lpips": 0.08518428029492497,
+      "score": 110.95434627604776,
+      "hole_mean": 0.0043,
+      "hole_p90": 0.01167,
+      "deficit_mean": 0.0063,
+      "deficit_p90": 0.01266,
+      "opaque_outside_flame": 0.05537141634036321,
+      "outside_mean": 0.05537141634036321,
+      "robust": 22.185150367736817
+    }
+  ],
+  "stopped_early": false
+}
