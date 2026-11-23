@@ -1,0 +1,253 @@
+==============================================================
+单阶段头像重建：subject / avatar
+  训练 : 10000 步  batch 8  repair 2  ssim 0.1  lpips 0  退火 ratio
+  结构 : tex 512  xyz_lr 0.0002（盘状初始化配套）  加密 关
+  产物 : models/subject/avatar
+==============================================================
+[avatar] 缺少修复图，用 models/subject/base 自动生成（p90 起点、只做 yaw 扇）
+
+$ conda run -n live3dgs --no-capture-output python scripts/make_repairs.py --subject subject --work-name base --auto --out output/repair/subject --out-dir datasets/subject/repair/repairs --repair-root datasets/subject/repair
+  数据集 : $WORKSPACE/runs/profile-v1/full-repo/datasets/subject（224 帧，训练段 192）
+  模型   : $WORKSPACE/runs/profile-v1/full-repo/models/subject/base/model.ply
+  基帧   : 00044（|yaw| 0.1°）
+  角度   : auto  yaw [10.0, 15.0, 20.0, 25.0, 30.0, 35.0, 40.0, 45.0, 50.0, 55.0, 60.0, 65.0, 70.0, 75.0, 80.0, 85.0, 90.0, -5.0, -10.0, -15.0, -20.0, -25.0, -30.0, -35.0, -40.0, -45.0, -50.0, -55.0, -60.0, -65.0, -70.0, -75.0, -80.0, -85.0, -90.0]  pitch []
+  视角   : 相机绕转（pose 驱动不可用：缺少 FLAME 模型：data/FLAME2020/generic_model.pkl）
+  yaw+10_pitch+0_roll+0_frame00044  (yaw +10.0°, pitch +0.0°)
+  yaw+15_pitch+0_roll+0_frame00044  (yaw +15.0°, pitch +0.0°)
+  yaw+20_pitch+0_roll+0_frame00044  (yaw +20.0°, pitch +0.0°)
+  yaw+25_pitch+0_roll+0_frame00044  (yaw +25.0°, pitch +0.0°)
+  yaw+30_pitch+0_roll+0_frame00044  (yaw +30.0°, pitch +0.0°)
+  yaw+35_pitch+0_roll+0_frame00044  (yaw +35.0°, pitch +0.0°)
+  yaw+40_pitch+0_roll+0_frame00044  (yaw +40.0°, pitch +0.0°)
+  yaw+45_pitch+0_roll+0_frame00044  (yaw +45.0°, pitch +0.0°)
+  yaw+50_pitch+0_roll+0_frame00044  (yaw +50.0°, pitch +0.0°)
+  yaw+55_pitch+0_roll+0_frame00044  (yaw +55.0°, pitch +0.0°)
+  yaw+60_pitch+0_roll+0_frame00044  (yaw +60.0°, pitch +0.0°)
+  yaw+65_pitch+0_roll+0_frame00044  (yaw +65.0°, pitch +0.0°)
+  yaw+70_pitch+0_roll+0_frame00044  (yaw +70.0°, pitch +0.0°)
+  yaw+75_pitch+0_roll+0_frame00044  (yaw +75.0°, pitch +0.0°)
+  yaw+80_pitch+0_roll+0_frame00044  (yaw +80.0°, pitch +0.0°)
+  yaw+85_pitch+0_roll+0_frame00044  (yaw +85.0°, pitch +0.0°)
+  yaw+90_pitch+0_roll+0_frame00044  (yaw +90.0°, pitch +0.0°)
+  yaw-5_pitch+0_roll+0_frame00044  (yaw -5.0°, pitch +0.0°)
+  yaw-10_pitch+0_roll+0_frame00044  (yaw -10.0°, pitch +0.0°)
+  yaw-15_pitch+0_roll+0_frame00044  (yaw -15.0°, pitch +0.0°)
+  yaw-20_pitch+0_roll+0_frame00044  (yaw -20.0°, pitch +0.0°)
+  yaw-25_pitch+0_roll+0_frame00044  (yaw -25.0°, pitch +0.0°)
+  yaw-30_pitch+0_roll+0_frame00044  (yaw -30.0°, pitch +0.0°)
+  yaw-35_pitch+0_roll+0_frame00044  (yaw -35.0°, pitch +0.0°)
+  yaw-40_pitch+0_roll+0_frame00044  (yaw -40.0°, pitch +0.0°)
+  yaw-45_pitch+0_roll+0_frame00044  (yaw -45.0°, pitch +0.0°)
+  yaw-50_pitch+0_roll+0_frame00044  (yaw -50.0°, pitch +0.0°)
+  yaw-55_pitch+0_roll+0_frame00044  (yaw -55.0°, pitch +0.0°)
+  yaw-60_pitch+0_roll+0_frame00044  (yaw -60.0°, pitch +0.0°)
+  yaw-65_pitch+0_roll+0_frame00044  (yaw -65.0°, pitch +0.0°)
+  yaw-70_pitch+0_roll+0_frame00044  (yaw -70.0°, pitch +0.0°)
+  yaw-75_pitch+0_roll+0_frame00044  (yaw -75.0°, pitch +0.0°)
+  yaw-80_pitch+0_roll+0_frame00044  (yaw -80.0°, pitch +0.0°)
+  yaw-85_pitch+0_roll+0_frame00044  (yaw -85.0°, pitch +0.0°)
+  yaw-90_pitch+0_roll+0_frame00044  (yaw -90.0°, pitch +0.0°)
+  参考图 : 追加 2 张真实帧 ['00191', '00000']
+  参考图 : 3 张（目标 ≥3）-> output/repair/subject/refs
+  输出   : output/repair/subject/views
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_0/views --ref_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_0/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_0/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+INFO:root:Loading safetensors file: model.safetensors
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Saving images:   0%|          | 0/4 [00:00<?, ?it/s]
+Saving images:  75%|███████▌  | 3/4 [00:00<00:00, 28.95it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 28.92it/s]
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_1/views --ref_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_1/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_1/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+INFO:root:Loading safetensors file: model.safetensors
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Saving images:   0%|          | 0/4 [00:00<?, ?it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 30.36it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 30.33it/s]
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_2/views --ref_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_2/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_2/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+INFO:root:Loading safetensors file: model.safetensors
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Saving images:   0%|          | 0/4 [00:00<?, ?it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 30.75it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 30.73it/s]
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_3/views --ref_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_3/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_3/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+INFO:root:Loading safetensors file: model.safetensors
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+
+Saving images:   0%|          | 0/4 [00:00<?, ?it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 30.36it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 30.34it/s]
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_4/views --ref_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_4/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_pos_4/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+INFO:root:Loading safetensors file: model.safetensors
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  2.45it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  2.45it/s]
+
+Saving images:   0%|          | 0/1 [00:00<?, ?it/s]
+Saving images: 100%|██████████| 1/1 [00:00<00:00, 29.54it/s]
+$ $WORKSPACE/.venv/bin/python $WORKSPACE/upstream/SyncFix/inference.py --input_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_neg_0/views --ref_image $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_neg_0/refs --model_path $WORKSPACE/runs/github-reference/syncfix-model --output_dir $WORKSPACE/runs/profile-v1/full-repo/output/repair/subject/_g_neg_0/fix --n_per_pass 4 --ref_size 3 --height 512 --width 512
+The config attributes {'clip_sample': False, 'sample_max_value': 1.0, 'set_alpha_to_one': False, 'skip_prk_steps': True} were passed to FlowMatchEulerDiscreteScheduler, but are not expected and will be ignored. Please verify your scheduler_config.json configuration file.
+Setting up [LPIPS] perceptual loss: trunk [vgg], v[0.1], spatial [off]
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=VGG16_Weights.IMAGENET1K_V1`. You can also use `weights=VGG16_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Loading model from: $WORKSPACE/.venv/lib/python3.11/site-packages/lpips/weights/v0.1/vgg.pth
+INFO:root:Loading safetensors file: model.safetensors
+
+Processing images:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+Processing images: 100%|██████████| 1/1 [00:00<00:00,  1.64it/s]
+
+Saving images:   0%|          | 0/4 [00:00<?, ?it/s]
+Saving images:  75%|███████▌  | 3/4 [00:00<00:00, 27.96it/s]
+Saving images: 100%|██████████| 4/4 [00:00<00:00, 28.06it/s]
+  yaw-20_pitch+0_roll+0_frame00044  破洞 3360px（占头部 8.4%）> 3000px → neg 侧从该角度起停止
+  修复图 : 20 张（mask=key）-> datasets/subject/repair/repairs
+  repair/ 结构：datasets/subject/repair
+[avatar] 初始化：UV 绑定高斯（未训练）
+
+$ conda run -n live3dgs --no-capture-output python scripts/init_uv.py --subject subject --out-dir tmp/subject_avatar_init
+[init-uv] tmp/subject_avatar_init/model.ply  高斯 42566  （tex 256，未训练）
+
+$ conda run -n live3dgs --no-capture-output python - tmp/subject_avatar_init tmp/subject_avatar_unified.yaml 512
+结构配置：tmp/subject_avatar_init/config.yaml -> tmp/subject_avatar_unified.yaml（tex 512）
+
+$ conda run -n live3dgs --no-capture-output python scripts/merge_layers.py --hard tmp/subject_avatar_init/model.ply --out tmp/subject_avatar_unified.ply --tex-size 512
+扩容 42566 个高斯 -> tmp/subject_avatar_unified.ply（tex 256 -> 512）
+
+$ conda run -n live3dgs --no-capture-output python scripts/train.py --subject subject --work-name avatar --stage base --init-ply tmp/subject_avatar_unified.ply --model-config tmp/subject_avatar_unified.yaml --repair-dir datasets/subject/repair/repairs --repair-per-batch 2 --batch-size 8 --iterations 10000 --blend-start 0 --hard-xyz-lr 0.0002 --patience 4 --ssim-weight 0.1 --lpips-weight 0 --lpips-from 5000 --repair-schedule ratio --repair-final-weight 0.2 --seed 1701
+训练 subject/avatar
+  数据   : $WORKSPACE/runs/profile-v1/full-repo/datasets/subject
+  阶段   : base
+  训练集 : 192 帧    验证集 : 32 帧（末尾 14%）
+  结构   : tmp/subject_avatar_unified.yaml
+           tex 512  D 129  K 20
+  步数   : 10000   batch 8   blend_start 0
+  早停   : 每 500 步验证，连续 4 次 < 0.05 dB；第 1000 步后生效
+  初始化 : tmp/subject_avatar_unified.ply（warm start）
+  提示   : pose 驱动不可用（缺少 FLAME 模型：data/FLAME2020/generic_model.pkl），退回相机绕转
+  高斯数 : 42566   基 K=20
+  初始化混合: 20 张修复图，batch 修复:真实=2:6
+  验证   : 相机绕转 ±20, ±30, ±40°（24 帧，λ=10）
+  硬位移 : xyz lr 0.0002（轻度）
+  损失   : L1（背景权重 1.00） + nv_spill 0.05 + 修复图退火 ratio（末权重 0.2） + alpha 0.2(对 GT mask) + ssim 0.1
+  感知项 : SSIM 0.1 + LPIPS 0（LPIPS 第 5000 步后启用）
+  新视角 : 每 4 步，yaw [-50, -40, -30, -20, -10, 10, 20, 30, 40, 50]，hole 0 + spill 0.05（margin 12px, alpha 0.05–0.6）
+  取数   : 预取 2 线程（批 8）
+  取数   : 逐帧解 PNG —— 可跑 scripts/cache_images.py 加速
+[train] 100/10000  损失 0.0264（l1 0.0100 ssim 0.1505 nv_spill 0.0000 alpha 0.0067）  32.4 it/s
+[train] 200/10000  损失 0.0334（l1 0.0134 ssim 0.1786 nv_spill 0.0000 alpha 0.0105）  33.5 it/s
+[train] 300/10000  损失 0.0258（l1 0.0103 ssim 0.1390 nv_spill 0.0035 alpha 0.0074）  34.1 it/s
+[train] 400/10000  损失 0.0241（l1 0.0088 ssim 0.1390 nv_spill 0.0007 alpha 0.0067）  34.3 it/s
+[train] 500/10000  损失 0.0219（l1 0.0081 ssim 0.1279 nv_spill 0.0000 alpha 0.0052）  34.4 it/s
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+  [best] 第 499 步 score 111.63（PSNR 23.14，SSIM 0.8593，LPIPS 0.0894） → model_best.ply（累计 16.9s）
+[train] 600/10000  损失 0.0241（l1 0.0093 ssim 0.1352 nv_spill 0.0006 alpha 0.0064）  30.0 it/s
+[train] 700/10000  损失 0.0195（l1 0.0072 ssim 0.1133 nv_spill 0.0022 alpha 0.0044）  30.5 it/s
+[train] 800/10000  损失 0.0222（l1 0.0083 ssim 0.1254 nv_spill 0.0006 alpha 0.0065）  30.8 it/s
+[train] 900/10000  损失 0.0213（l1 0.0078 ssim 0.1233 nv_spill 0.0003 alpha 0.0056）  31.2 it/s
+[train] 1000/10000  损失 0.0189（l1 0.0071 ssim 0.1070 nv_spill 0.0000 alpha 0.0056）  31.5 it/s
+  [best] 第 999 步 score 112.22（PSNR 22.94，SSIM 0.8643，LPIPS 0.0789） → model_best.ply（累计 33.5s）
+[train] 1100/10000  损失 0.0189（l1 0.0072 ssim 0.1066 nv_spill 0.0000 alpha 0.0053）  30.3 it/s
+[train] 1200/10000  损失 0.0169（l1 0.0062 ssim 0.0972 nv_spill 0.0015 alpha 0.0045）  30.7 it/s
+[train] 1300/10000  损失 0.0198（l1 0.0076 ssim 0.1121 nv_spill 0.0020 alpha 0.0046）  31.0 it/s
+[train] 1400/10000  损失 0.0190（l1 0.0068 ssim 0.1094 nv_spill 0.0049 alpha 0.0048）  31.3 it/s
+[train] 1500/10000  损失 0.0188（l1 0.0071 ssim 0.1053 nv_spill 0.0006 alpha 0.0053）  31.6 it/s
+  [best] 第 1499 步 score 112.31（PSNR 22.92，SSIM 0.8624，LPIPS 0.0746） → model_best.ply（累计 49.2s）
+[train] 1600/10000  损失 0.0167（l1 0.0065 ssim 0.0916 nv_spill 0.0002 alpha 0.0051）  30.7 it/s
+[train] 1700/10000  损失 0.0162（l1 0.0060 ssim 0.0923 nv_spill 0.0000 alpha 0.0044）  31.0 it/s
+[train] 1800/10000  损失 0.0171（l1 0.0066 ssim 0.0946 nv_spill 0.0001 alpha 0.0054）  31.2 it/s
+[train] 1900/10000  损失 0.0183（l1 0.0066 ssim 0.1078 nv_spill 0.0009 alpha 0.0044）  31.4 it/s
+[train] 2000/10000  损失 0.0187（l1 0.0071 ssim 0.1049 nv_spill 0.0000 alpha 0.0054）  31.6 it/s
+  [best] 第 1999 步 score 113.03（PSNR 23.25，SSIM 0.8671，LPIPS 0.0717） → model_best.ply（累计 65.0s）
+[train] 2100/10000  损失 0.0173（l1 0.0065 ssim 0.0979 nv_spill 0.0000 alpha 0.0047）  31.0 it/s
+[train] 2200/10000  损失 0.0150（l1 0.0058 ssim 0.0831 nv_spill 0.0002 alpha 0.0041）  31.1 it/s
+[train] 2300/10000  损失 0.0179（l1 0.0069 ssim 0.0996 nv_spill 0.0000 alpha 0.0052）  31.3 it/s
+[train] 2400/10000  损失 0.0193（l1 0.0070 ssim 0.1117 nv_spill 0.0003 alpha 0.0054）  31.5 it/s
+[train] 2500/10000  损失 0.0148（l1 0.0059 ssim 0.0801 nv_spill 0.0009 alpha 0.0043）  31.6 it/s
+  [best] 第 2499 步 score 114.29（PSNR 24.24，SSIM 0.8698，LPIPS 0.0688） → model_best.ply（累计 80.9s）
+[train] 2600/10000  损失 0.0157（l1 0.0059 ssim 0.0875 nv_spill 0.0039 alpha 0.0043）  31.0 it/s
+[train] 2700/10000  损失 0.0172（l1 0.0062 ssim 0.1002 nv_spill 0.0000 alpha 0.0045）  31.1 it/s
+[train] 2800/10000  损失 0.0160（l1 0.0059 ssim 0.0926 nv_spill 0.0005 alpha 0.0043）  31.2 it/s
+[train] 2900/10000  损失 0.0152（l1 0.0056 ssim 0.0874 nv_spill 0.0007 alpha 0.0041）  31.3 it/s
+[train] 3000/10000  损失 0.0166（l1 0.0062 ssim 0.0937 nv_spill 0.0017 alpha 0.0049）  31.4 it/s
+[train] 3100/10000  损失 0.0152（l1 0.0058 ssim 0.0842 nv_spill 0.0006 alpha 0.0045）  31.2 it/s
+[train] 3200/10000  损失 0.0145（l1 0.0056 ssim 0.0806 nv_spill 0.0010 alpha 0.0040）  31.3 it/s
+[train] 3300/10000  损失 0.0149（l1 0.0059 ssim 0.0823 nv_spill 0.0000 alpha 0.0041）  31.4 it/s
+[train] 3400/10000  损失 0.0145（l1 0.0056 ssim 0.0810 nv_spill 0.0000 alpha 0.0042）  31.5 it/s
+[train] 3500/10000  损失 0.0156（l1 0.0059 ssim 0.0866 nv_spill 0.0011 alpha 0.0048）  31.6 it/s
+[train] 3600/10000  损失 0.0153（l1 0.0060 ssim 0.0843 nv_spill 0.0001 alpha 0.0039）  31.4 it/s
+[train] 3700/10000  损失 0.0134（l1 0.0053 ssim 0.0724 nv_spill 0.0010 alpha 0.0040）  31.5 it/s
+[train] 3800/10000  损失 0.0139（l1 0.0052 ssim 0.0778 nv_spill 0.0021 alpha 0.0042）  31.6 it/s
+[train] 3900/10000  损失 0.0140（l1 0.0055 ssim 0.0757 nv_spill 0.0025 alpha 0.0038）  31.6 it/s
+[train] 4000/10000  损失 0.0143（l1 0.0056 ssim 0.0796 nv_spill 0.0004 alpha 0.0037）  31.7 it/s
+[train] 4100/10000  损失 0.0137（l1 0.0055 ssim 0.0713 nv_spill 0.0024 alpha 0.0045）  31.5 it/s
+[train] 4200/10000  损失 0.0145（l1 0.0055 ssim 0.0818 nv_spill 0.0004 alpha 0.0040）  31.6 it/s
+[train] 4300/10000  损失 0.0135（l1 0.0051 ssim 0.0758 nv_spill 0.0012 alpha 0.0041）  31.7 it/s
+[train] 4400/10000  损失 0.0126（l1 0.0048 ssim 0.0709 nv_spill 0.0024 alpha 0.0032）  31.8 it/s
+[train] 4500/10000  损失 0.0151（l1 0.0060 ssim 0.0800 nv_spill 0.0019 alpha 0.0051）  31.8 it/s
+  [save] 第 4500 步 model_004500.ply（累计 143.1s）
+
+最终模型：$WORKSPACE/runs/profile-v1/full-repo/output/train/subject/avatar/model.ply（累计 143.8s）
+
+训练结束：4500 步，142.4 s，31.60 it/s
+  最佳验证 score 114.29（第 2499 步，累计 80.9s）
+  早停   : 连续 4 次验证提升 < 0.05 dB（每 500 步验证）
+  装入来源：model_best.ply
+已装入：$WORKSPACE/runs/profile-v1/full-repo/models/subject/avatar
+  评测：bash eval.sh --subject subject --work-name avatar
+[avatar] 完成：models/subject/avatar
+[avatar] 评测：bash eval.sh --subject subject --work-name avatar
