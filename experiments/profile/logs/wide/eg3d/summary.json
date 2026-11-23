@@ -1,0 +1,22 @@
+{
+  "method": "eg3d",
+  "weights": "175591ffbb15798f23f1bb98fd54a1eb087b7bd0fd23d39b03765b4e0cfb4db5",
+  "frames_sha256": "c10d48bc18686c55a24bcc8cdcb937f48d3e32812cd1073d2b60ba81515a8c36",
+  "groups": {
+    "negative": {
+      "n": 22,
+      "psnr": 17.59100580215613,
+      "lpips": 0.1639964743094011
+    },
+    "positive": {
+      "n": 33,
+      "psnr": 18.3641358603255,
+      "lpips": 0.1699618435267246
+    },
+    "side": {
+      "n": 55,
+      "psnr": 18.054883837057755,
+      "lpips": 0.1675756958397952
+    }
+  }
+}
