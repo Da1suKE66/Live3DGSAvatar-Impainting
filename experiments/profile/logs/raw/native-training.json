@@ -1,0 +1,46 @@
+{
+  "subject": "subject",
+  "work_name": "raw",
+  "stage": "base",
+  "iterations": 250,
+  "seconds": 19.6305266370764,
+  "best_psnr": 111.08008421028634,
+  "best_iteration": 249,
+  "best_seconds": 18.9,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 19.6
+    },
+    {
+      "iteration": 250,
+      "file": "model_000250.ply",
+      "seconds": 20.3
+    }
+  ],
+  "eval_every": 250,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 249,
+      "psnr": 22.25770854949951,
+      "ssim": 0.8623324791719476,
+      "lpips": 0.08588496595621109,
+      "score": 111.08008421028634,
+      "hole_mean": 0.00447,
+      "hole_p90": 0.01186,
+      "deficit_mean": 0.00608,
+      "deficit_p90": 0.01237,
+      "opaque_outside_flame": 0.05542696959778812,
+      "outside_mean": 0.05542696959778812,
+      "robust": 22.213008549499513
+    }
+  ],
+  "stopped_early": false
+}

@@ -227,6 +227,19 @@ def _flame_topology(cfg: Config, device: str) -> dict:
 
     缓存以 CPU 为准、每次调用再搬设备（否则"先 cuda 后 cpu"会拿到错设备）。
     """
+    public_mesh = cfg.get("paths.mesh_topology")
+    if public_mesh:
+        import numpy as np
+        with np.load(Path(public_mesh), allow_pickle=False) as mesh:
+            faces, uv_faces = (np.asarray(mesh[key], dtype=np.int32) for key in ("faces", "uv_faces"))
+            uvs = np.asarray(mesh["uvs"], dtype=np.float32)
+        if (faces.ndim != 2 or faces.shape[1] != 3 or not faces.size or
+                uv_faces.shape != faces.shape or uvs.ndim != 2 or uvs.shape[1] != 2 or
+                faces.min() < 0 or uv_faces.min() < 0 or uv_faces.max() >= len(uvs) or
+                not np.isfinite(uvs).all() or uvs.min() < 0 or uvs.max() > 1):
+            raise ValueError(f"Invalid texture topology in {public_mesh}")
+        return {key: torch.as_tensor(arr, device=device) for key,arr in
+                (("faces",faces), ("uv_faces",uv_faces), ("uvs",uvs))}
     return flame_topology.load(_flame_dir(cfg), _cache_dir(cfg), device)
 
 

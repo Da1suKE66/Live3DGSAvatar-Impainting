@@ -1,0 +1,103 @@
+{
+  "subject": "subject",
+  "work_name": "base",
+  "stage": "base",
+  "iterations": 1200,
+  "seconds": 73.55766243801918,
+  "best_psnr": 110.44467009326422,
+  "best_iteration": 1199,
+  "best_seconds": 73.6,
+  "checkpoints": [
+    {
+      "iteration": 249,
+      "file": "model_000249.ply",
+      "seconds": 14.4
+    },
+    {
+      "iteration": 499,
+      "file": "model_000499.ply",
+      "seconds": 30.5
+    },
+    {
+      "iteration": 749,
+      "file": "model_000749.ply",
+      "seconds": 46.4
+    },
+    {
+      "iteration": 999,
+      "file": "model_000999.ply",
+      "seconds": 61.4
+    },
+    {
+      "iteration": 1200,
+      "file": "model_001200.ply",
+      "seconds": 74.2
+    }
+  ],
+  "eval_every": 300,
+  "patience": 10,
+  "min_delta": 0.05,
+  "early_stop_after": 1000,
+  "ssim_weight": 0.1,
+  "lpips_weight": 0.0,
+  "lpips_from": 20000,
+  "eval_history": [
+    {
+      "iteration": 299,
+      "psnr": 22.651905059814453,
+      "ssim": 0.8501469673448993,
+      "lpips": 0.10619762819260359,
+      "score": 109.84937201742923,
+      "hole_mean": 0.00359,
+      "hole_p90": 0.00888,
+      "deficit_mean": 0.00734,
+      "deficit_p90": 0.01112,
+      "opaque_outside_flame": 0.05448699196644171,
+      "outside_mean": 0.05448699196644171,
+      "robust": 22.61600505981445
+    },
+    {
+      "iteration": 599,
+      "psnr": 22.963380813598633,
+      "ssim": 0.8513466652961071,
+      "lpips": 0.1048465077765286,
+      "score": 110.28838868957756,
+      "hole_mean": 0.00431,
+      "hole_p90": 0.01062,
+      "deficit_mean": 0.00802,
+      "deficit_p90": 0.01358,
+      "opaque_outside_flame": 0.051857262757217616,
+      "outside_mean": 0.051857262757217616,
+      "robust": 22.920280813598634
+    },
+    {
+      "iteration": 899,
+      "psnr": 21.901365280151367,
+      "ssim": 0.8544372173920226,
+      "lpips": 0.09988059243187308,
+      "score": 109.62919652815884,
+      "hole_mean": 0.00556,
+      "hole_p90": 0.01159,
+      "deficit_mean": 0.00895,
+      "deficit_p90": 0.01385,
+      "opaque_outside_flame": 0.047933140492418404,
+      "outside_mean": 0.047933140492418404,
+      "robust": 21.84576528015137
+    },
+    {
+      "iteration": 1199,
+      "psnr": 22.468867301940918,
+      "ssim": 0.8576917118769098,
+      "lpips": 0.09817565605044365,
+      "score": 110.44467009326422,
+      "hole_mean": 0.00508,
+      "hole_p90": 0.01138,
+      "deficit_mean": 0.00853,
+      "deficit_p90": 0.0132,
+      "opaque_outside_flame": 0.05010496771852249,
+      "outside_mean": 0.05010496771852249,
+      "robust": 22.41806730194092
+    }
+  ],
+  "stopped_early": false
+}

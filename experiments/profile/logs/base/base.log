@@ -1,0 +1,49 @@
+$WORKSPACE/.venv/bin/python -u scripts/train.py --subject subject --work-name base --stage base --model-config configs/model_rgb.yaml --seed 1701 --test-ratio 0.14285714285714285 --blend-start 0 --ssim-weight 0.1 --lpips-weight 0 --prefetch-workers 0 --eval-frames 16 --patience 10 --save-every 250 --min-delta 0.05 --iterations 1200 --eval-every 300 --batch-size 8
+训练 subject/base
+  数据   : $WORKSPACE/runs/profile-v1/datasets/subject
+  阶段   : base
+  训练集 : 192 帧    验证集 : 32 帧（末尾 14%）
+  结构   : configs/model_rgb.yaml
+           tex 256  D 129  K 20
+  步数   : 1200   batch 8   blend_start 0
+  早停   : 每 300 步验证，连续 10 次 < 0.05 dB；第 1000 步后生效
+  提示   : pose 驱动不可用（缺少 FLAME 模型：data/FLAME2020/generic_model.pkl），退回相机绕转
+  高斯数 : 42566   基 K=20
+  验证   : 相机绕转 ±20, ±30, ±40°（24 帧，λ=10）
+  损失   : L1（背景权重 1.00） + nv_spill 0.05 + 修复图退火 ratio（末权重 0.2） + alpha 0.2(对 GT mask) + ssim 0.1
+  感知项 : SSIM 0.1 + LPIPS 0（LPIPS 第 20000 步后启用）
+  新视角 : 每 4 步，yaw [-50, -40, -30, -20, -10, 10, 20, 30, 40, 50]，hole 0 + spill 0.05（margin 12px, alpha 0.05–0.6）
+  取数   : 预取 0 线程（批 8）
+  取数   : 逐帧解 PNG —— 可跑 scripts/cache_images.py 加速
+[train] 100/1200  损失 0.0283（l1 0.0098 ssim 0.1727 nv_spill 0.0001 alpha 0.0061）  17.7 it/s
+[train] 200/1200  损失 0.0271（l1 0.0102 ssim 0.1551 nv_spill 0.0000 alpha 0.0073）  18.1 it/s
+  [save] 第 249 步 model_000249.ply（累计 14.4s）
+[train] 300/1200  损失 0.0275（l1 0.0100 ssim 0.1577 nv_spill 0.0050 alpha 0.0074）  17.6 it/s
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+<shared-torch>/.venv/lib/python3.11/site-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+  [best] 第 299 步 score 109.85（PSNR 22.65，SSIM 0.8501，LPIPS 0.1062） → model_best.ply（累计 18.8s）
+[train] 400/1200  损失 0.0259（l1 0.0092 ssim 0.1528 nv_spill 0.0002 alpha 0.0072）  16.4 it/s
+[train] 500/1200  损失 0.0211（l1 0.0074 ssim 0.1254 nv_spill 0.0000 alpha 0.0055）  16.8 it/s
+  [save] 第 499 步 model_000499.ply（累计 30.5s）
+[train] 600/1200  损失 0.0228（l1 0.0081 ssim 0.1330 nv_spill 0.0008 alpha 0.0067）  16.7 it/s
+  [best] 第 599 步 score 110.29（PSNR 22.96，SSIM 0.8513，LPIPS 0.1048） → model_best.ply（累计 37.2s）
+[train] 700/1200  损失 0.0242（l1 0.0086 ssim 0.1388 nv_spill 0.0050 alpha 0.0073）  16.3 it/s
+  [save] 第 749 步 model_000749.ply（累计 46.4s）
+[train] 800/1200  损失 0.0213（l1 0.0079 ssim 0.1215 nv_spill 0.0003 alpha 0.0060）  16.3 it/s
+[train] 900/1200  损失 0.0199（l1 0.0070 ssim 0.1199 nv_spill 0.0006 alpha 0.0047）  16.5 it/s
+[train] 1000/1200  损失 0.0215（l1 0.0077 ssim 0.1260 nv_spill 0.0002 alpha 0.0059）  16.5 it/s
+  [save] 第 999 步 model_000999.ply（累计 61.4s）
+[train] 1100/1200  损失 0.0205（l1 0.0072 ssim 0.1224 nv_spill 0.0000 alpha 0.0054）  16.5 it/s
+[train] 1200/1200  损失 0.0198（l1 0.0071 ssim 0.1152 nv_spill 0.0021 alpha 0.0054）  16.6 it/s
+  [best] 第 1199 步 score 110.44（PSNR 22.47，SSIM 0.8577，LPIPS 0.0982） → model_best.ply（累计 73.6s）
+  [save] 第 1200 步 model_001200.ply（累计 74.2s）
+
+最终模型：$WORKSPACE/runs/profile-v1/output/train/subject/base/model.ply（累计 74.9s）
+
+训练结束：1200 步，73.6 s，16.31 it/s
+  最佳验证 score 110.44（第 1199 步，累计 73.6s）
+  装入来源：model_best.ply
+已装入：$WORKSPACE/runs/profile-v1/models/subject/base
+  评测：bash eval.sh --subject subject --work-name base
