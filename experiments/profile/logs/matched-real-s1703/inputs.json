@@ -1,0 +1,16 @@
+{
+  "method": "matched-real-s1703",
+  "training_seed": 1703,
+  "initial_ply_sha256": "12ab047b5222c2ef52d90302c1bac47adb9b7069dbd435d714bed9a6ed5d45b2",
+  "view_count": 0,
+  "ordered_camera_files": [],
+  "batch_size": 8,
+  "reference_alpha_and_target_alpha_equal": null,
+  "alpha_sha256": null,
+  "rgba_sha256": null,
+  "label_digest_format": "For each sorted camera filename, hash its ASCII bytes, a NUL byte, then the uncompressed 512x512 row-major pixels.",
+  "selected_checkpoint_sha256": "1ee8d4561e3584da3bb9eba38fc4d922668702c4f93117e0ab00d0a0f94f8a1e",
+  "evaluation_frames_sha256": "2019fbf1388cd29c08b2d87be262c0b467e1e79e880f6d430e48e7fcd602fec0",
+  "saved_heldout_renders": 87,
+  "saved_virtual_renders": 6
+}
